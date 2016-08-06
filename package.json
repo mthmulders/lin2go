@@ -7,6 +7,7 @@
     "test": "jest --coverage --verbose --config=test/config.json"
   },
   "dependencies": {
+    "apsl-react-native-button": "^3.0.0",
     "react": "15.2.1",
     "react-native": "0.31.0",
     "react-native-router-flux": "^3.33.2"
