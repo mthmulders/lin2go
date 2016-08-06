@@ -1,11 +1,9 @@
-To run your app on iOS:
-   cd /Users/maarten/Projects/lin2go
-   react-native run-ios
-   - or -
-   Open /Users/maarten/Projects/lin2go/ios/lin2go.xcodeproj in Xcode
-   Hit the Run button
-To run your app on Android:
-   Have an Android emulator running (quickest way to get started), or a device connected
-   cd /Users/maarten/Projects/lin2go
-   react-native run-android
+# lin2go
 
+## Running on iOS
+Issue `react-native run-ios` or open `ios/lin2go.xcodeproj` in Xcode and hit the Run button.
+The dev menu can be accessed by pressing `Cmd+D` in the emulator.
+
+## Running on Android
+Have an Android emulator running (quickest way to get started), or a device connected and issue `react-native run-android`.
+The dev menu can be accessed by pressing `Cmd+M` in the emulator.
