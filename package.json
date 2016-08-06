@@ -3,11 +3,18 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest --coverage --verbose --config=test/config.json"
   },
   "dependencies": {
     "react": "15.2.1",
     "react-native": "0.31.0",
     "react-native-router-flux": "^3.33.2"
+  },
+  "devDependencies": {
+    "babel-jest": "^14.1.0",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-es2015": "^6.13.2",
+    "jest-cli": "^14.1.0"
   }
 }
