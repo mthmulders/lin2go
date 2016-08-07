@@ -1,4 +1,6 @@
 {
+  "collectCoverage": "true",
   "testPathDirs": ["test"],
-  "testRegex": ".*Spec\\.js$"
+  "testRegex": ".*Spec\\.js$",
+  "verbose": "true"
 }
