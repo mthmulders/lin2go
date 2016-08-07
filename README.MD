@@ -1,4 +1,5 @@
 # lin2go
+[![CircleCI](https://circleci.com/gh/mthmulders/lin2go.svg?style=svg)](https://circleci.com/gh/mthmulders/lin2go)
 
 ## Running on iOS
 Issue `react-native run-ios` or open `ios/lin2go.xcodeproj` in Xcode and hit the Run button.
