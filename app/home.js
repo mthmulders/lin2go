@@ -29,10 +29,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  console.log('mapDispatchToProps: startGame is a(n) ' + typeof startGame);
-  const ding = startGame();
-  console.log('mapDispatchToProps: the result of invoking startGame is a(n) ' + typeof ding);
-  console.log('mapDispatchToProps: the result of invoking startGame is ' + JSON.stringify(ding));
   return {
     startGame: () => dispatch(startGame())
   };
