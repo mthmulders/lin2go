@@ -12,3 +12,6 @@ The _dev_ menu can be accessed by pressing `Cmd+D` in the emulator.
 ## Running on Android
 Have an Android emulator running (quickest way to get started), or a device connected and issue `react-native run-android`.
 The _dev_ menu can be accessed by pressing `Cmd+M` in the emulator.
+
+## License
+This code is MIT Licensed.
