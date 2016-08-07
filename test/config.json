@@ -1,5 +1,6 @@
 {
   "collectCoverage": "true",
+  "scriptPreprocessor": "test/babel-preprocessor.js",
   "testPathDirs": ["test"],
   "testRegex": ".*Spec\\.js$",
   "verbose": "true"
