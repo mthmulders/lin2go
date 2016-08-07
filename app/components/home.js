@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import Button from 'apsl-react-native-button';
 
-import { startGame } from './actions';
+import { startGame } from '../actions';
 
 const styles = StyleSheet.create({
   button: {

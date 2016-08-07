@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 
-import Home from '../home';
+import Home from '../components/home';
 import styles from '../styles';
 
 const App = (props) => {
