@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import Home from './home';
+import App from './containers/app';
 import reducers from './reducers';
+import styles from './styles'
 
-const store = createStore(reducers, {});
+const initialState = {};
+const store = createStore(reducers, initialState);
 
-export default App = (props) => (
+export default () => (
   <Provider store={ store }>
-    <Home />
+    <App />
   </Provider>
 );

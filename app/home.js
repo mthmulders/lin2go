@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import Button from 'apsl-react-native-button';
 
-import globalStyles from './styles'
+import { startGame } from './actions';
 
 const styles = StyleSheet.create({
   button: {
@@ -13,24 +13,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginLeft: 20,
     marginRight: 20
-  },
-  header: {
-    fontSize: 36,
-    marginBottom: 40
   }
 });
 
-const startNewGame = () => {
-  console.log('Will start a new game here!');
-};
-
 const Home = (props) => (
-  <View style={ globalStyles.container }>
-    <Text style={ styles.header }>LIN2GO</Text>
-    <Button style={ styles.button } onPress={ startNewGame }>
-      <Text>Start new game</Text>
-    </Button>
-  </View>
+  <Button style={ styles.button } onPress={ props.startGame }>
+    <Text>Start new game</Text>
+  </Button>
 );
 
 const mapStateToProps = (state) => {
@@ -40,8 +29,12 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+  console.log('mapDispatchToProps: startGame is a(n) ' + typeof startGame);
+  const ding = startGame();
+  console.log('mapDispatchToProps: the result of invoking startGame is a(n) ' + typeof ding);
+  console.log('mapDispatchToProps: the result of invoking startGame is ' + JSON.stringify(ding));
   return {
-
+    startGame: () => dispatch(startGame())
   };
 };
 
