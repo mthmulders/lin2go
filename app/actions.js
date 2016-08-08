@@ -1,5 +1,7 @@
-export const START_GAME = 'START_GAME';
+const START_GAME = 'START_GAME';
 
-export function startGame() {
+const startGame = () => {
   return { type: START_GAME };
 };
+
+export { START_GAME, startGame };

@@ -24,13 +24,13 @@ const Home = (props) => (
 
 const mapStateToProps = (state) => {
   return {
-    gameRunning: state.game !== undefined
+    gameRunning: state.game !== null
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    startGame: () => dispatch(startGame())
+    startGame: () => dispatch(startGame());
   };
 };
 

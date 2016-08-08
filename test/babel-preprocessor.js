@@ -6,6 +6,8 @@ var options = {
 
 module.exports = {
 	process: function (src) {
-		return babel.transform(src, options).code
+		const result = babel.transform(src, options).code
+		// console.log('Transformation result\n', result, '\n\n');
+		return result;
 	}
 }
