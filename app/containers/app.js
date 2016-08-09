@@ -10,7 +10,6 @@ const App = (props) => {
 
   return (
     <View style={ styles.container }>
-      <Text style={ styles.header }>LIN2GO</Text>
       { !gameRunning && <Home /> }
     </View>
   );

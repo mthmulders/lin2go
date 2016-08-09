@@ -6,9 +6,5 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  header: {
-    fontSize: 36,
-    marginBottom: 40
   }
 });

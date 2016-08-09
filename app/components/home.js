@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import Button from 'apsl-react-native-button';
 
 import { startGame } from '../actions';
-
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
@@ -13,13 +12,19 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginLeft: 20,
     marginRight: 20
+  },
+  logo: {
+    marginBottom: 40
   }
 });
 
 const Home = (props) => (
-  <Button style={ styles.button } onPress={ props.startGame }>
-    <Text>Start new game</Text>
-  </Button>
+  <View>
+    <Image source={ require('../resources/start.png') } style={ styles.logo } />
+    <Button style={ styles.button } onPress={ props.startGame }>
+      <Text>Start new game</Text>
+    </Button>
+  </View>
 );
 
 const mapStateToProps = (state) => {
@@ -30,7 +35,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    startGame: () => dispatch(startGame());
+    startGame: () => dispatch(startGame())
   };
 };
 
