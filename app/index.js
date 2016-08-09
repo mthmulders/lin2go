@@ -13,7 +13,8 @@ const initialState = {};
 const logger = createLogger({
   colors: { action: false, error: false, nextState: false, prevState: false, title: false },
   duration: true,
-  level: 'info'
+  level: 'info',
+  predicate: (getState, action) => __DEV__
 });
 const middleware = applyMiddleware(logger);
 const store = createStore(reducers, initialState, middleware);
