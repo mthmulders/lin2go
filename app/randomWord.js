@@ -3,11 +3,7 @@
 // file and reading it from the filesystem with react-native-fs
 // (https://github.com/johanneslumpe/react-native-fs)
 
-const words = [
-  "appel",
-  "kiwis",
-  "peren"
-]
+import words from './words';
 
 export default () => {
   const index = Math.random() * words.length;
