@@ -8,7 +8,12 @@ import App from './containers/app';
 import reducers from './reducers';
 import styles from './styles'
 
-const initialState = {};
+const initialState = {
+  stats: {
+    wins: 0,
+    losses: 0
+  }
+};
 
 const logger = createLogger({
   colors: { action: false, error: false, nextState: false, prevState: false, title: false },
