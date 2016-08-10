@@ -5,23 +5,26 @@ import { connect } from 'react-redux';
 import Game from '../containers/game';
 import Home from '../components/home';
 import Logo from '../components/logo';
+import Stats from '../components/stats';
 import styles from '../styles';
 
 const App = (props) => {
-  const { gameRunning } = props;
+  const { gameRunning, showStats, stats } = props;
 
   return (
     <View style={ styles.container }>
       <Logo />
-      { !gameRunning && <Home /> }
-      { gameRunning && <Game /> }
+      { !gameRunning && !showStats && <Home /> }
+      { gameRunning && !showStats && <Game /> }
+      { !gameRunning && showStats && <Stats stats={ stats } /> }
     </View>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    gameRunning: state.game !== undefined
+    gameRunning: state.game !== undefined,
+    showStats: state.showStats
   };
 };
 

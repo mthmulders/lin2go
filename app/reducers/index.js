@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { CANCEL_GAME, START_GAME } from '../actions';
+import { CANCEL_GAME, HIDE_STATS, SHOW_STATS, START_GAME } from '../actions';
 import randomWord from '../randomWord';
 
 // If we want to persist the game stats, we can use RN AsyncStorage
@@ -14,6 +14,10 @@ export default (state, action) => {
     case CANCEL_GAME:
       const currentLosses = state.stats.losses;
       return { ...state, stats: { losses: currentLosses + 1 }, game: undefined };
+    case SHOW_STATS:
+      return { ...state, showStats: true };
+    case HIDE_STATS:
+      return { ...state, showStats: false };
     default:
       return state;
   }
