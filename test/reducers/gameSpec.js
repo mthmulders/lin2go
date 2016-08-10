@@ -43,4 +43,16 @@ describe('The \'CANCEL_GAME\' action', () => {
     // Assert
     expect(state.stats.losses).toBe(1);
   });
+  
+  it('should keep the number of wins unchanged', () => {
+    // Arrange
+    const initalState = { stats: { losses: 0, wins: 3 } };
+    const action = cancelGame();
+
+    // Act
+    const state = reducer(initalState, action);
+
+    // Assert
+    expect(state.stats.wins).toBe(3);
+  });
 });

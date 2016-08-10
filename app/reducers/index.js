@@ -13,7 +13,8 @@ export default (state, action) => {
       return { ...state, game };
     case CANCEL_GAME:
       const currentLosses = state.stats.losses;
-      return { ...state, stats: { losses: currentLosses + 1 }, game: undefined };
+      const stats = { ...state.stats, losses: currentLosses + 1 };
+      return { ...state, stats: stats, game: undefined };
     case SHOW_STATS:
       return { ...state, showStats: true };
     case HIDE_STATS:
