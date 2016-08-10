@@ -3,7 +3,7 @@
 Build status (just the Javascript): [![CircleCI](https://circleci.com/gh/mthmulders/lin2go.svg?style=svg)](https://circleci.com/gh/mthmulders/lin2go)
 
 ## What is it?
-lin2go is an experiment to write a simple game using [React Native](https://facebook.github.io/react-native/).
+LIN2GO is an experiment to write a simple game using [React Native](https://facebook.github.io/react-native/).
 Aside from React Native, it uses [Redux](http://redux.js.org/) for the logic and state management.
 
 ## Running on iOS
