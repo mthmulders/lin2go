@@ -9,19 +9,11 @@ import randomWord from '../randomWord';
 export default (state, action) => {
   switch (action.type) {
     case START_GAME:
-      return Object.assign({}, state, {
-        game: {
-          targetWord: randomWord()
-        }
-      });
+      const game = { targetWord: randomWord() };
+      return { ...state, game };
     case CANCEL_GAME:
       const currentLosses = state.stats.losses;
-      return Object.assign({}, state, {
-        game: undefined,
-        stats: {
-          losses: currentLosses + 1
-        }
-      });
+      return { ...state, stats: { losses: currentLosses + 1 }, game: undefined };
     default:
       return state;
   }

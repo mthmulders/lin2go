@@ -1,7 +1,8 @@
 var babel = require('babel-core');
 
 var options = {
-  presets: ["es2015", "react"]
+  presets: ["es2015", "react"],
+  plugins: ["transform-object-rest-spread"]
 };
 
 module.exports = {
