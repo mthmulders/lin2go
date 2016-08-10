@@ -1,5 +1,4 @@
 {
-  "automock": false,
   "collectCoverage": true,
   "scriptPreprocessor": "test/babel-preprocessor.js",
   "testPathDirs": ["test"],

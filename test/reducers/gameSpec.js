@@ -1,7 +1,10 @@
-import { cancelGame, startGame } from '../../app/actions';
-import reducer from '../../app/reducers/';
+jest.unmock('../../app/actions');
+jest.unmock('../../app/reducers/index');
 
-describe('START_GAME', () => {
+const { cancelGame, startGame } = require('../../app/actions');
+const reducer = require('../../app/reducers/index').default;
+
+describe('The \'START_GAME\' action', () => {
   it('should add a game to the app state', () => {
       // Arrange
       const initalState = {};
@@ -16,7 +19,7 @@ describe('START_GAME', () => {
 });
 
 
-describe('CANCEL_GAME', () => {
+describe('The \'CANCEL_GAME\' action', () => {
   it('should remove the running game from the app state', () => {
     // Arrange
     const initalState = { game: {}, stats: { losses: 0 } };
