@@ -16,8 +16,19 @@ describe('The \'START_GAME\' action', () => {
       // Assert
       expect(state.game).toBeDefined();
   });
-});
 
+  it('should create an initial -empty- guess', () => {
+      // Arrange
+      const initalState = {};
+      const action = startGame();
+
+      // Act
+      const state = reducer(initalState, action);
+
+      // Assert
+      expect(state.game.currentGuess).toBe('');
+  });
+});
 
 describe('The \'CANCEL_GAME\' action', () => {
   it('should remove the running game from the app state', () => {
@@ -43,7 +54,7 @@ describe('The \'CANCEL_GAME\' action', () => {
     // Assert
     expect(state.stats.losses).toBe(1);
   });
-  
+
   it('should keep the number of wins unchanged', () => {
     // Arrange
     const initalState = { stats: { losses: 0, wins: 3 } };

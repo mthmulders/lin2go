@@ -9,7 +9,7 @@ import randomWord from '../randomWord';
 export default (state, action) => {
   switch (action.type) {
     case START_GAME:
-      const game = { targetWord: randomWord() };
+      const game = { targetWord: randomWord(), currentGuess: '' };
       return { ...state, game };
     case CANCEL_GAME:
       const currentLosses = state.stats.losses;
