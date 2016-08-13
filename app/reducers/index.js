@@ -1,6 +1,12 @@
 import { combineReducers } from 'redux';
 
-import { CANCEL_GAME, HIDE_STATS, SHOW_STATS, START_GAME } from '../actions';
+import {
+  ADD_LETTER_TO_GUESS,
+  CANCEL_GAME,
+  HIDE_STATS,
+  SHOW_STATS,
+  START_GAME
+} from '../actions';
 import randomWord from '../randomWord';
 
 // If we want to persist the game stats, we can use RN AsyncStorage
@@ -8,17 +14,38 @@ import randomWord from '../randomWord';
 
 export default (state, action) => {
   switch (action.type) {
-    case START_GAME:
-      const game = { targetWord: randomWord(), currentGuess: '' };
-      return { ...state, game };
+    case ADD_LETTER_TO_GUESS:
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          currentGuess: state.game.currentGuess + action.letter
+        }
+      };
     case CANCEL_GAME:
-      const currentLosses = state.stats.losses;
-      const stats = { ...state.stats, losses: currentLosses + 1 };
-      return { ...state, stats: stats, game: undefined };
-    case SHOW_STATS:
-      return { ...state, showStats: true };
+      return {
+        ...state,
+        stats: {
+          ...state.stats,
+          losses: state.stats.losses + 1
+        },
+        game: undefined
+      };
     case HIDE_STATS:
-      return { ...state, showStats: false };
+      return {
+        ...state,
+        showStats: false
+      };
+    case SHOW_STATS:
+      return {
+        ...state,
+        showStats: true
+      };
+    case START_GAME:
+      return {
+        ...state,
+        game: { targetWord: randomWord(), currentGuess: '' }
+      };
     default:
       return state;
   }

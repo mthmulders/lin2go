@@ -1,32 +1,32 @@
 jest.unmock('../../app/actions');
 jest.unmock('../../app/reducers/index');
 
-const { cancelGame, startGame } = require('../../app/actions');
+const { addLetterToGuess, cancelGame, startGame } = require('../../app/actions');
 const reducer = require('../../app/reducers/index').default;
 
 describe('The \'START_GAME\' action', () => {
   it('should add a game to the app state', () => {
-      // Arrange
-      const initalState = {};
-      const action = startGame();
+    // Arrange
+    const initalState = {};
+    const action = startGame();
 
-      // Act
-      const state = reducer(initalState, action);
+    // Act
+    const state = reducer(initalState, action);
 
-      // Assert
-      expect(state.game).toBeDefined();
+    // Assert
+    expect(state.game).toBeDefined();
   });
 
   it('should create an initial -empty- guess', () => {
-      // Arrange
-      const initalState = {};
-      const action = startGame();
+    // Arrange
+    const initalState = {};
+    const action = startGame();
 
-      // Act
-      const state = reducer(initalState, action);
+    // Act
+    const state = reducer(initalState, action);
 
-      // Assert
-      expect(state.game.currentGuess).toBe('');
+    // Assert
+    expect(state.game.currentGuess).toBe('');
   });
 });
 
@@ -65,5 +65,19 @@ describe('The \'CANCEL_GAME\' action', () => {
 
     // Assert
     expect(state.stats.wins).toBe(3);
+  });
+});
+
+describe('The \'ADD_LETTER_TO_GUESS\' action', () => {
+  it('should add the supplied letter to the current guess', () => {
+    // Arrange
+    const initalState = { game: { currentGuess: '' } };
+    const action = addLetterToGuess('a');
+
+    // Act
+    const state = reducer(initalState, action);
+
+    // Assert
+    expect(state.game.currentGuess).toBe('a');
   });
 });

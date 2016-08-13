@@ -4,12 +4,15 @@ import { connect } from 'react-redux';
 import Button from 'apsl-react-native-button';
 
 import { cancelGame } from '../actions';
-import GuessPanel from '../components/guessPanel';
+import Guess from '../components/guess';
 import styles from '../styles';
 
 const Game = (props) => (
   <View>
-    <GuessPanel cancelGame={ props.cancelGame }/>
+    <Guess />
+    <Button style={ styles.button } onPress={ props.cancelGame }>
+      <Text>Give up</Text>
+    </Button>
   </View>
 );
 
