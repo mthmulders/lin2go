@@ -1,8 +1,8 @@
-jest.unmock('../../app/actions');
-jest.unmock('../../app/reducers/index');
+jest.unmock('../../actions');
+jest.unmock('../index');
 
-const { addLetterToGuess, cancelGame, startGame } = require('../../app/actions');
-const reducer = require('../../app/reducers/index').default;
+import { addLetterToGuess, cancelGame, startGame } from '../../actions';
+import reducer from '../index';
 
 describe('The \'START_GAME\' action', () => {
   it('should add a game to the app state', () => {

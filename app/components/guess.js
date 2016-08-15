@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Button from 'apsl-react-native-button';
 
 import { addLetterToGuess } from '../actions';
-import LetterInput from './letterInput';
 import styles from '../styles';
 
 const Guess = (props) => {

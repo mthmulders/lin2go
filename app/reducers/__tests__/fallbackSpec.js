@@ -1,7 +1,7 @@
-jest.unmock('../../app/actions');
-jest.unmock('../../app/reducers/index');
+jest.unmock('../../actions');
+jest.unmock('../index');
 
-const reducer = require('../../app/reducers/index').default;
+import reducer from '../index';
 
 describe('An unknown action', () => {
   it('should not alter the app state', () => {

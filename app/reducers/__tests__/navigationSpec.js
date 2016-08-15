@@ -1,8 +1,8 @@
-jest.unmock('../../app/actions');
-jest.unmock('../../app/reducers/index');
+jest.unmock('../../actions');
+jest.unmock('../index');
 
-const { hideStats, showStats } = require('../../app/actions');
-const reducer = require('../../app/reducers/index').default;
+import { hideStats, showStats } from '../../actions';
+import reducer from '../index';
 
 describe('The \'SHOW_STATS\' action', () => {
   it('should trigger showing the stats', () => {

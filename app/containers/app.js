@@ -8,7 +8,7 @@ import Logo from '../components/logo';
 import Stats from '../components/stats';
 import styles from '../styles';
 
-const App = (props) => {
+export const App = (props) => {
   const { gameRunning, showStats, stats } = props;
 
   return (
