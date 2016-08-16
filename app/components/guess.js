@@ -6,13 +6,9 @@ import Button from 'apsl-react-native-button';
 import { addLetterToGuess } from '../actions';
 import styles from '../styles';
 
-const Guess = (props) => {
+export const Guess = (props) => {
   // Keep a reference to each TextInput so we can auto-advance to the next one.
   const items = new Array(5);
-
-  // Determine which letter should be editable. Only the next letter is.
-  const editable = new Array(5).fill(false);
-  editable[props.guess.length] = true;
 
   // Helper method to automatically advance to the next input by focussing it.
   const autoAdvance = (idx) => {
@@ -26,7 +22,7 @@ const Guess = (props) => {
       autoFocus={ true }
       autoCorrect={ false }
       blurOnSubmit={ false }
-      editable={ editable[idx] }
+      editable={ idx === props.guess.length }
       maxLength={ 1 }
       onChangeText={ props.addLetterToGuess }
       onChange= { () => autoAdvance(idx) }
