@@ -21,7 +21,7 @@ describe('The guess component', () => {
     // Assert
     const result = renderer.getRenderOutput();
     const textInputs = findAllWithType(result, TextInput);
-    var editables = textInputs.map((i) => i.props.editable);
+    const editables = textInputs.map((i) => i.props.editable);
     expect(editables).toEqual([false, false, true, false, false]);
   });
 });
