@@ -6,7 +6,7 @@ import Button from 'apsl-react-native-button';
 import { showStats, startGame } from '../actions';
 import styles from '../styles';
 
-const Home = (props) => (
+export const Home = (props) => (
   <View>
     <Button style={ styles.button } onPress={ props.startGame }>
       <Text>Start new game</Text>

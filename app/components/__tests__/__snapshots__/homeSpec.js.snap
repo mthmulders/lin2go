@@ -1,0 +1,74 @@
+exports[`The home screen should show menu buttons 1`] = `
+<View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function bound touchableHandleResponderGrant]}
+    onResponderMove={[Function bound touchableHandleResponderMove]}
+    onResponderRelease={[Function bound touchableHandleResponderRelease]}
+    onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
+    onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
+    onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+    style={
+      Object {
+        "alignItems": "center",
+        "alignSelf": "stretch",
+        "backgroundColor": "red",
+        "borderRadius": 8,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "fontSize": 18,
+        "height": 44,
+        "justifyContent": "center",
+        "marginBottom": 10,
+        "opacity": 1,
+        "paddingLeft": 20,
+        "paddingRight": 20
+      }
+    }
+    testID={undefined}>
+    <Text>
+      Start new game
+    </Text>
+  </View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function bound touchableHandleResponderGrant]}
+    onResponderMove={[Function bound touchableHandleResponderMove]}
+    onResponderRelease={[Function bound touchableHandleResponderRelease]}
+    onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
+    onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
+    onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+    style={
+      Object {
+        "alignItems": "center",
+        "alignSelf": "stretch",
+        "backgroundColor": "red",
+        "borderRadius": 8,
+        "borderWidth": 1,
+        "flexDirection": "row",
+        "fontSize": 18,
+        "height": 44,
+        "justifyContent": "center",
+        "marginBottom": 10,
+        "opacity": 1,
+        "paddingLeft": 20,
+        "paddingRight": 20
+      }
+    }
+    testID={undefined}>
+    <Text>
+      Statistics
+    </Text>
+  </View>
+</View>
+`;
