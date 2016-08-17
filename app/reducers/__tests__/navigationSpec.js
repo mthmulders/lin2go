@@ -12,7 +12,6 @@ describe('The \'SHOW_STATS\' action', () => {
 
       // Act
       const state = reducer(initalState, action);
-      console.log('State after SHOW_STATS : ' + JSON.stringify(state));
 
       // Assert
       expect(state.showStats).toBe(true);
@@ -28,7 +27,6 @@ describe('The \'HIDE_STATS\' action', () => {
 
     // Act
     const state = reducer(initalState, action);
-    console.log('State after HIDE_STATS : ' + JSON.stringify(state));
 
     // Assert
     expect(state.showStats).toBe(false);

@@ -7,6 +7,7 @@ import { addLetterToGuess } from '../actions';
 import styles from '../styles';
 
 export const Guess = (props) => {
+  const { addLetterToGuess, guess } = props;
   // Keep a reference to each TextInput so we can auto-advance to the next one.
   const items = new Array(5);
 
@@ -22,18 +23,19 @@ export const Guess = (props) => {
       autoFocus={ true }
       autoCorrect={ false }
       blurOnSubmit={ false }
-      editable={ idx === props.guess.length }
+      editable={ idx === guess.length }
       maxLength={ 1 }
-      onChangeText={ props.addLetterToGuess }
+      onChangeText={ addLetterToGuess }
       onChange= { () => autoAdvance(idx) }
       ref={ (r) => items[idx] = r }
       returnKeyType={ 'next' }
+      value={ idx <= guess.length ? guess[idx] : ' ' }
     />
   );
 
   return (
     <View style={{ flexDirection: 'row' }}>
-      { letterInput(0, () => { autoAdvance(0) }) }
+      { letterInput(0, () => autoAdvance(0)) }
       { letterInput(1, () => autoAdvance(1)) }
       { letterInput(2, () => autoAdvance(2)) }
       { letterInput(3, () => autoAdvance(3)) }
@@ -44,7 +46,7 @@ export const Guess = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    guess: state.game.currentGuess
+    guess: state.game.guess
   };
 };
 

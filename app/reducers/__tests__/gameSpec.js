@@ -21,7 +21,7 @@ describe('The \'START_GAME\' action', () => {
     expect(state.targetWord).toBe(targetWord);
   });
 
-  it('should create an initial -empty- guess', () => {
+  it('should create an initial empty guess', () => {
     // Arrange
     const initalState = {};
     const action = startGame();
@@ -30,7 +30,19 @@ describe('The \'START_GAME\' action', () => {
     const state = reducer(initalState, action);
 
     // Assert
-    expect(state.currentGuess).toBe('');
+    expect(state.guess).toBe('');
+  });
+
+  it('should create an empty array of previous attempts', () => {
+    // Arrange
+    const initalState = {};
+    const action = startGame();
+
+    // Act
+    const state = reducer(initalState, action);
+
+    // Assert
+    expect(state.attempts).toEqual([]);
   });
 });
 
@@ -51,13 +63,39 @@ describe('The \'CANCEL_GAME\' action', () => {
 describe('The \'ADD_LETTER_TO_GUESS\' action', () => {
   it('should add the supplied letter to the current guess', () => {
     // Arrange
-    const initalState = { currentGuess: '' };
+    const initalState = { guess: '' };
     const action = addLetterToGuess('a');
 
     // Act
     const state = reducer(initalState, action);
 
     // Assert
-    expect(state.currentGuess).toBe('a');
+    expect(state.guess).toBe('a');
+  });
+
+  describe('when the guess is 5 letters long', () => {
+    it('should register the attempt', () => {
+      // Arrange
+      const initalState = { attempts: [], guess: 'kiwi' };
+      const action = addLetterToGuess('s');
+
+      // Act
+      const state = reducer(initalState, action);
+
+      // Assert
+      expect(state.attempts[0]).toBe('kiwis');
+    });
+
+    it('should create a new empty guess', () => {
+      // Arrange
+      const initalState = { attempts: [], guess: 'kiwi' };
+      const action = addLetterToGuess('s');
+
+      // Act
+      const state = reducer(initalState, action);
+
+      // Assert
+      expect(state.guess).toBe('');
+    });
   });
 });
