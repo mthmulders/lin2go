@@ -4,7 +4,7 @@ jest.unmock('../randomWord');
 import { getWord, wordCount } from '../words';
 import randomWord from '../randomWord';
 
-describe('Random Word generator', () => {
+describe('The random word generator', () => {
   it('should select a word from the list', () => {
     // Arrange
     const word = 'kiwis';
