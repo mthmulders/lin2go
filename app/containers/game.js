@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import Button from 'apsl-react-native-button';
 
-import { cancelGame } from '../actions';
+import { cancelGame, increaseLosses } from '../actions';
 import Guess from '../components/guess';
 import styles from '../styles';
 
@@ -22,7 +22,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    cancelGame: () => dispatch(cancelGame())
+    cancelGame: () => {
+      dispatch(cancelGame());
+      dispatch(increaseLosses());
+    }
   };
 };
 

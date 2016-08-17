@@ -2,7 +2,7 @@ jest.unmock('../../actions');
 jest.unmock('../index');
 
 import { hideStats, showStats } from '../../actions';
-import reducer from '../index';
+import reducer from '../nav';
 
 describe('The \'SHOW_STATS\' action', () => {
   it('should trigger showing the stats', () => {
@@ -12,6 +12,7 @@ describe('The \'SHOW_STATS\' action', () => {
 
       // Act
       const state = reducer(initalState, action);
+      console.log('State after SHOW_STATS : ' + JSON.stringify(state));
 
       // Assert
       expect(state.showStats).toBe(true);
@@ -27,20 +28,10 @@ describe('The \'HIDE_STATS\' action', () => {
 
     // Act
     const state = reducer(initalState, action);
+    console.log('State after HIDE_STATS : ' + JSON.stringify(state));
 
     // Assert
     expect(state.showStats).toBe(false);
   });
-//
-//   it('should increment the number of losses with 1', () => {
-//     // Arrange
-//     const initalState = { stats: { losses: 0 } };
-//     const action = cancelGame();
-//
-//     // Act
-//     const state = reducer(initalState, action);
-//
-//     // Assert
-//     expect(state.stats.losses).toBe(1);
-//   });
+
 });

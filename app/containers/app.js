@@ -22,9 +22,10 @@ export const App = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log('state: ' + JSON.stringify(state));
   return {
-    gameRunning: state.game !== undefined,
-    showStats: state.showStats
+    gameRunning: state.game.targetWord !== undefined,
+    showStats: state.nav.showStats
   };
 };
 

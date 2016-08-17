@@ -4,10 +4,10 @@ const words = [
   "peren"
 ];
 
-export function wordCount() {
-  return words.lenght;
+export const wordCount = () => {
+  return words.length;
 }
 
-export function getWord(idx) {
+export const getWord = (idx) => {
   return words[idx];
 }
