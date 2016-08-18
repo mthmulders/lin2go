@@ -21,7 +21,6 @@ exports[`The home screen should show menu buttons 1`] = `
         "borderRadius": 8,
         "borderWidth": 1,
         "flexDirection": "row",
-        "fontSize": 18,
         "height": 44,
         "justifyContent": "center",
         "marginBottom": 10,
@@ -31,7 +30,12 @@ exports[`The home screen should show menu buttons 1`] = `
       }
     }
     testID={undefined}>
-    <Text>
+    <Text
+      style={
+        Object {
+          "fontSize": 18
+        }
+      }>
       Start new game
     </Text>
   </View>
@@ -56,7 +60,6 @@ exports[`The home screen should show menu buttons 1`] = `
         "borderRadius": 8,
         "borderWidth": 1,
         "flexDirection": "row",
-        "fontSize": 18,
         "height": 44,
         "justifyContent": "center",
         "marginBottom": 10,
@@ -66,7 +69,12 @@ exports[`The home screen should show menu buttons 1`] = `
       }
     }
     testID={undefined}>
-    <Text>
+    <Text
+      style={
+        Object {
+          "fontSize": 18
+        }
+      }>
       Statistics
     </Text>
   </View>

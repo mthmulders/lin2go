@@ -29,12 +29,12 @@ export const Guess = (props) => {
       onChange= { () => autoAdvance(idx) }
       ref={ (r) => items[idx] = r }
       returnKeyType={ 'next' }
-      value={ idx <= guess.length ? guess[idx] : ' ' }
+      value={ idx <= guess.length ? guess[idx] : '' }
     />
   );
 
   return (
-    <View style={{ flexDirection: 'row' }}>
+    <View style={ styles.guess }>
       { letterInput(0, () => autoAdvance(0)) }
       { letterInput(1, () => autoAdvance(1)) }
       { letterInput(2, () => autoAdvance(2)) }

@@ -9,10 +9,10 @@ import styles from '../styles';
 export const Home = (props) => (
   <View>
     <Button style={ styles.button } onPress={ props.startGame }>
-      <Text>Start new game</Text>
+      <Text style={ styles.buttonLabel }>Start new game</Text>
     </Button>
     <Button style={ styles.button } onPress={ props.showStats }>
-      <Text>Statistics</Text>
+      <Text style={ styles.buttonLabel }>Statistics</Text>
     </Button>
   </View>
 );
