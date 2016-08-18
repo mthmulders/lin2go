@@ -83,7 +83,7 @@ describe('The \'ADD_LETTER_TO_GUESS\' action', () => {
       const state = reducer(initalState, action);
 
       // Assert
-      expect(state.attempts[0]).toBe('kiwis');
+      expect(state.attempts[0]).toBe('KIWIS');
     });
 
     it('should create a new empty guess', () => {
