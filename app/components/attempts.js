@@ -12,7 +12,7 @@ export const Attempts = (props) => {
   };
 
   const renderAttempt = (attempt, attemptId) => {
-    const letters = attempt.split('');
+    const letters = attempt.word.split('');
     return (
       <View style={ styles.attempt } key={ attemptId }>
         { letters.map((letter, letterId) => renderLetter(letter, `${attemptId}.${letterId}`)) }
@@ -38,7 +38,9 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 Attempts.propTypes = {
-  attempts: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
+  attempts: React.PropTypes.arrayOf(React.PropTypes.shape({
+    word: React.PropTypes.string.isRequired
+  })).isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Attempts);

@@ -10,9 +10,13 @@ export default (state = {}, action) => {
   switch (action.type) {
     case ADD_LETTER_TO_GUESS:
       const guess = state.guess + action.letter;
-      const newAttempt =  guess.length === 5;
-      const attempts = newAttempt ? [...state.attempts, guess.toUpperCase()] : state.attempts;
-      return { ...state, attempts, guess: newAttempt ? '' : guess };
+      if (guess.length === 5) {
+        const attempt = { word: guess.toUpperCase() };
+        const attempts = [...state.attempts, attempt];
+        return { ...state, attempts, guess: '' };
+      } else {
+        return { ...state, guess };
+      }
     case CANCEL_GAME:
       return { };
     case START_GAME:
