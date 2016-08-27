@@ -1,7 +1,21 @@
 jest.unmock('../../actions');
 jest.unmock('../index');
+jest.unmock('redux-mock-store');
+jest.unmock('redux-thunk');
 
-import { addLetterToGuess, cancelGame, startGame } from '../../actions';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
+
+import {
+  ADD_LETTER_TO_GUESS, addLetterToGuess,
+  addGuess,
+  cancelGame,
+  RATE_ATTEMPT,
+  RESET_GUESS, resetGuess,
+  startGame
+} from '../../actions';
 import reducer from '../game';
 jest.mock('../../randomWord');
 import randomWord from '../../randomWord';
@@ -60,14 +74,65 @@ describe('The \'CANCEL_GAME\' action', () => {
   });
 });
 
+describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
+  // Since the mockStore does not actually perform the actions,
+  // these tests set an initialState that looks as if the ADD_LETTER_TO_GUESS
+  // action itself had already been performed.
+
+  describe('when the letter would not make the guess complete', () => {
+    it('should dispatch an \'ADD_LETTER_TO_GUESS\' action so the letter', () => {
+      // Arrange
+      const initialState = { game: { guess: '' } };
+      const store = mockStore(initialState);
+
+      // Act
+      store.dispatch(addLetterToGuess('a'));
+
+      // Assert
+      expect(store.getActions()).toEqual([
+        { type: ADD_LETTER_TO_GUESS, letter: 'a' }
+      ]);
+    });
+  });
+
+  describe('when the letter would make the guess complete', () => {
+    it('should start rating the attempt', () => {
+      // Arrange
+      const initialState = { game: { guess: 'kiwis' } };
+      const store = mockStore(initialState);
+
+      // Act
+      store.dispatch(addLetterToGuess(''));
+
+      // Assert
+      // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
+      expect(store.getActions()[2]).toEqual({ type: RATE_ATTEMPT, index: 0 });
+    });
+
+    it('should reset the guess', () => {
+      // Arrange
+      const initialState = { game: { guess: 'kiwis' } };
+      const store = mockStore(initialState);
+
+      // Act
+      store.dispatch(addLetterToGuess(''));
+
+      // Assert
+      // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
+      expect(store.getActions()[1]).toEqual({ type: RESET_GUESS });
+    });
+  });
+});
+
 describe('The \'ADD_LETTER_TO_GUESS\' action', () => {
   it('should add the supplied letter to the current guess', () => {
     // Arrange
-    const initalState = { guess: '' };
-    const action = addLetterToGuess('a');
+    const initialState = { guess: '' };
+    const action = { type: ADD_LETTER_TO_GUESS, letter: 'a' };
+    const store = mockStore(initialState);
 
     // Act
-    const state = reducer(initalState, action);
+    const state = reducer(initialState, action);
 
     // Assert
     expect(state.guess).toBe('a');
@@ -77,7 +142,7 @@ describe('The \'ADD_LETTER_TO_GUESS\' action', () => {
     it('should register the attempt', () => {
       // Arrange
       const initalState = { attempts: [], guess: 'kiwi' };
-      const action = addLetterToGuess('s');
+      const action = { type: ADD_LETTER_TO_GUESS, letter: 's' };
 
       // Act
       const state = reducer(initalState, action);
@@ -85,11 +150,13 @@ describe('The \'ADD_LETTER_TO_GUESS\' action', () => {
       // Assert
       expect(state.attempts[0].word).toBe('KIWIS');
     });
+  });
 
+  describe('The \'RESET_GUESS\' action', () => {
     it('should create a new empty guess', () => {
       // Arrange
       const initalState = { attempts: [], guess: 'kiwi' };
-      const action = addLetterToGuess('s');
+      const action = resetGuess();
 
       // Act
       const state = reducer(initalState, action);

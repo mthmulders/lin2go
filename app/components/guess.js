@@ -27,7 +27,7 @@ export const Guess = (props) => {
       maxLength={ 1 }
       onChangeText={ addLetterToGuess }
       onChange= { () => autoAdvance(idx) }
-      ref={ (r) => items[idx] = r }
+      ref={ (ref) => items[idx] = ref }
       returnKeyType={ 'next' }
       value={ idx <= guess.length ? guess[idx] : '' }
     />
@@ -35,10 +35,10 @@ export const Guess = (props) => {
 
   return (
     <View style={ styles.guess }>
-      { letterInput(0, () => autoAdvance(0)) }
-      { letterInput(1, () => autoAdvance(1)) }
-      { letterInput(2, () => autoAdvance(2)) }
-      { letterInput(3, () => autoAdvance(3)) }
+      { letterInput(0) }
+      { letterInput(1) }
+      { letterInput(2) }
+      { letterInput(3) }
       { letterInput(4) }
     </View>
   )
