@@ -9,11 +9,11 @@ const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
 import {
-  ADD_LETTER_TO_GUESS, addLetterToGuess,
+  ADD_LETTER_TO_GUESS,
   addGuess,
   cancelGame,
-  RATE_ATTEMPT, rateAttempt,
-  RESET_GUESS, resetGuess,
+  rateAttempt,
+  resetGuess,
   startGame
 } from '../../actions';
 import reducer from '../game';
@@ -74,57 +74,6 @@ describe('The \'CANCEL_GAME\' action', () => {
   });
 });
 
-describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
-  // Since the mockStore does not actually perform the actions,
-  // these tests set an initialState that looks as if the ADD_LETTER_TO_GUESS
-  // action itself had already been performed.
-
-  describe('when the letter would not make the guess complete', () => {
-    it('should dispatch an \'ADD_LETTER_TO_GUESS\' action', () => {
-      // Arrange
-      const initialState = { game: { guess: '' } };
-      const store = mockStore(initialState);
-
-      // Act
-      store.dispatch(addLetterToGuess('a'));
-
-      // Assert
-      expect(store.getActions().length).toBe(1);
-      expect(store.getActions()[0]).toEqual({ type: ADD_LETTER_TO_GUESS, letter: 'a' });
-    });
-  });
-
-  describe('when the letter would make the guess complete', () => {
-    it('should dispatch an additional \'RATE_ATTEMPT\' action', () => {
-      // Arrange
-      const initialState = { game: { guess: 'kiwis' } };
-      const store = mockStore(initialState);
-
-      // Act
-      store.dispatch(addLetterToGuess(''));
-
-      // Assert
-      expect(store.getActions().length).toBe(3);
-      // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
-      expect(store.getActions()[2]).toEqual({ type: RATE_ATTEMPT, index: 0 });
-    });
-
-    it('should dispatch an additional \'RESET_GUESS\' action', () => {
-      // Arrange
-      const initialState = { game: { guess: 'kiwis' } };
-      const store = mockStore(initialState);
-
-      // Act
-      store.dispatch(addLetterToGuess(''));
-
-      // Assert
-      expect(store.getActions().length).toBe(3);
-      // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
-      expect(store.getActions()[1]).toEqual({ type: RESET_GUESS });
-    });
-  });
-});
-
 describe('The \'ADD_LETTER_TO_GUESS\' action', () => {
   it('should add the supplied letter to the current guess', () => {
     // Arrange
@@ -153,19 +102,19 @@ describe('The \'ADD_LETTER_TO_GUESS\' action', () => {
       expect(state.attempts[0].score).toEqual([,,,,,]);
     });
   });
+});
 
-  describe('The \'RESET_GUESS\' action', () => {
-    it('should create a new empty guess', () => {
-      // Arrange
-      const initalState = { attempts: [], guess: 'kiwi' };
-      const action = resetGuess();
+describe('The \'RESET_GUESS\' action', () => {
+  it('should create a new empty guess', () => {
+    // Arrange
+    const initalState = { attempts: [], guess: 'kiwi' };
+    const action = resetGuess();
 
-      // Act
-      const state = reducer(initalState, action);
+    // Act
+    const state = reducer(initalState, action);
 
-      // Assert
-      expect(state.guess).toBe('');
-    });
+    // Assert
+    expect(state.guess).toBe('');
   });
 });
 
@@ -173,7 +122,7 @@ describe('The \'RATE_ATTEMPT\' action', () => {
   it('should rate a letter that is on the right location with 2', () => {
     // Arrange
     const initalState = { targetWord: 'kiwis', attempts: [ { word: 'kiest', score: new Array(5) } ] };
-    const action = rateAttempt(0);
+    const action = { type: 'RATE_ATTEMPT', index: 0 };
 
     // Act
     const state = reducer(initalState, action);
@@ -181,10 +130,11 @@ describe('The \'RATE_ATTEMPT\' action', () => {
     // Assert
     expect(state.attempts[0].score[0]).toEqual(2);
   });
+
   it('should rate a letter that is on a wrong location with 1', () => {
     // Arrange
     const initalState = { targetWord: 'kiwis', attempts: [ { word: 'kiest', score: new Array(5) } ] };
-    const action = rateAttempt(3);
+    const action = { type: 'RATE_ATTEMPT', index: 3 };
 
     // Act
     const state = reducer(initalState, action);
@@ -192,10 +142,11 @@ describe('The \'RATE_ATTEMPT\' action', () => {
     // Assert
     expect(state.attempts[0].score[3]).toEqual(1);
   });
+
   it('should rate a letter that is competely wrong location with 0', () => {
     // Arrange
     const initalState = { targetWord: 'kiwis', attempts: [ { word: 'kiest', score: new Array(5) } ] };
-    const action = rateAttempt(2);
+    const action = { type: 'RATE_ATTEMPT', index: 2 };
 
     // Act
     const state = reducer(initalState, action);

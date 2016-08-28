@@ -23,7 +23,17 @@ export const hideStats = () => {
   return { type: HIDE_STATS };
 }
 export const rateAttempt = (index) => {
-  return { type: RATE_ATTEMPT, index };
+  return (dispatch, getState) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        dispatch({ type: RATE_ATTEMPT, index });
+        if (index <= 3) {
+          dispatch(rateAttempt(index + 1));
+        }
+        resolve();
+      }, 750);
+    });
+  };
 };
 export const resetGuess = () => {
   return { type: RESET_GUESS };
