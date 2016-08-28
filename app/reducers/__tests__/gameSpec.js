@@ -168,3 +168,39 @@ describe('The \'ADD_LETTER_TO_GUESS\' action', () => {
     });
   });
 });
+
+describe('The \'RATE_ATTEMPT\' action', () => {
+  it('should rate a letter that is on the right location with 2', () => {
+    // Arrange
+    const initalState = { targetWord: 'kiwis', attempts: [ { word: 'kiest', score: new Array(5) } ] };
+    const action = rateAttempt(0);
+
+    // Act
+    const state = reducer(initalState, action);
+
+    // Assert
+    expect(state.attempts[0].score[0]).toEqual(2);
+  });
+  it('should rate a letter that is on a wrong location with 1', () => {
+    // Arrange
+    const initalState = { targetWord: 'kiwis', attempts: [ { word: 'kiest', score: new Array(5) } ] };
+    const action = rateAttempt(3);
+
+    // Act
+    const state = reducer(initalState, action);
+
+    // Assert
+    expect(state.attempts[0].score[3]).toEqual(1);
+  });
+  it('should rate a letter that is competely wrong location with 0', () => {
+    // Arrange
+    const initalState = { targetWord: 'kiwis', attempts: [ { word: 'kiest', score: new Array(5) } ] };
+    const action = rateAttempt(2);
+
+    // Act
+    const state = reducer(initalState, action);
+
+    // Assert
+    expect(state.attempts[0].score[2]).toEqual(0);
+  });
+});

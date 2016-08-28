@@ -24,9 +24,24 @@ export default (state = {}, action) => {
       return { };
     }
     case RATE_ATTEMPT: {
+      const target = state.targetWord;
       const attempt = state.attempts[state.attempts.length - 1];
-      console.log('Should now rate letter ' + action.index + ' of attempt ' + attempt.word);
-      return state;
+
+      // Build new score so the original state is not mutated.
+      const score = Array.from(attempt.score);
+      if (target[action.index] === attempt.word[action.index]) {
+        score[action.index] = 2;
+      } else if (target.indexOf(attempt.word[action.index]) !== -1) {
+        score[action.index] = 1;
+      } else {
+        score[action.index] = 0;
+      }
+
+      // Build new array so the original state is not mutated.
+      const attempts = Array.from(state.attempts)
+      attempts[state.attempts.length - 1] = { ...attempt, score };
+
+      return { ...state, attempts };
     }
     case RESET_GUESS: {
       return { ...state, guess: '' }
