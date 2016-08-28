@@ -13,7 +13,7 @@ export default (state = {}, action) => {
     case ADD_LETTER_TO_GUESS: {
       const guess = state.guess + action.letter;
       if (guess.length === 5) {
-        const attempt = { word: guess.toUpperCase() };
+        const attempt = { word: guess.toUpperCase(), score: new Array(5) };
         const attempts = [...state.attempts, attempt];
         return { ...state, attempts, guess };
       } else {

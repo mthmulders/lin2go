@@ -12,7 +12,7 @@ import {
   ADD_LETTER_TO_GUESS, addLetterToGuess,
   addGuess,
   cancelGame,
-  RATE_ATTEMPT,
+  RATE_ATTEMPT, rateAttempt,
   RESET_GUESS, resetGuess,
   startGame
 } from '../../actions';
@@ -80,7 +80,7 @@ describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
   // action itself had already been performed.
 
   describe('when the letter would not make the guess complete', () => {
-    it('should dispatch an \'ADD_LETTER_TO_GUESS\' action so the letter', () => {
+    it('should dispatch an \'ADD_LETTER_TO_GUESS\' action', () => {
       // Arrange
       const initialState = { game: { guess: '' } };
       const store = mockStore(initialState);
@@ -89,14 +89,13 @@ describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
       store.dispatch(addLetterToGuess('a'));
 
       // Assert
-      expect(store.getActions()).toEqual([
-        { type: ADD_LETTER_TO_GUESS, letter: 'a' }
-      ]);
+      expect(store.getActions().length).toBe(1);
+      expect(store.getActions()[0]).toEqual({ type: ADD_LETTER_TO_GUESS, letter: 'a' });
     });
   });
 
   describe('when the letter would make the guess complete', () => {
-    it('should start rating the attempt', () => {
+    it('should dispatch an additional \'RATE_ATTEMPT\' action', () => {
       // Arrange
       const initialState = { game: { guess: 'kiwis' } };
       const store = mockStore(initialState);
@@ -105,11 +104,12 @@ describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
       store.dispatch(addLetterToGuess(''));
 
       // Assert
+      expect(store.getActions().length).toBe(3);
       // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
       expect(store.getActions()[2]).toEqual({ type: RATE_ATTEMPT, index: 0 });
     });
 
-    it('should reset the guess', () => {
+    it('should dispatch an additional \'RESET_GUESS\' action', () => {
       // Arrange
       const initialState = { game: { guess: 'kiwis' } };
       const store = mockStore(initialState);
@@ -118,6 +118,7 @@ describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
       store.dispatch(addLetterToGuess(''));
 
       // Assert
+      expect(store.getActions().length).toBe(3);
       // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
       expect(store.getActions()[1]).toEqual({ type: RESET_GUESS });
     });
@@ -149,6 +150,7 @@ describe('The \'ADD_LETTER_TO_GUESS\' action', () => {
 
       // Assert
       expect(state.attempts[0].word).toBe('KIWIS');
+      expect(state.attempts[0].score).toEqual([,,,,,]);
     });
   });
 
