@@ -1,5 +1,4 @@
 jest.unmock('../../actions');
-// jest.unmock('../index');
 jest.unmock('redux-mock-store');
 jest.unmock('redux-thunk');
 
