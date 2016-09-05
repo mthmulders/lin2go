@@ -1,5 +1,6 @@
 jest.unmock('../../actions');
 jest.unmock('../index');
+jest.unmock('../nav');
 
 import { hideStats, showStats } from '../../actions';
 import reducer from '../nav';

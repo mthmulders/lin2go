@@ -89,7 +89,6 @@ describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
 
       // Assert
       setTimeout(() => {
-        console.log('Dispatched actions due to ADD_LETTER_TO_GUESS()' + JSON.stringify(store.getActions()));
         expect(store.getActions().length).toBe(3);
         // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
         expect(store.getActions()[2]).toEqual({ type: RATE_ATTEMPT, index: 0 });

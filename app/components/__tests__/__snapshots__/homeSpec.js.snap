@@ -31,6 +31,9 @@ exports[`The home screen should show menu buttons 1`] = `
     }
     testID={undefined}>
     <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
       style={
         Object {
           "fontSize": 18
@@ -70,6 +73,9 @@ exports[`The home screen should show menu buttons 1`] = `
     }
     testID={undefined}>
     <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
       style={
         Object {
           "fontSize": 18

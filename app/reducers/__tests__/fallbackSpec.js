@@ -1,5 +1,11 @@
-jest.unmock('../../actions');
+// Unmock all other reducers because otherwise 'combineReducers' will warn about
+// the fact that these reducers returned undefined during initialization.
+jest.unmock('../game');
 jest.unmock('../index');
+jest.unmock('../nav');
+jest.unmock('../stats');
+// Unmock Redux so we can use 'combineReducers'.
+jest.unmock('redux');
 
 import reducer from '../index';
 
