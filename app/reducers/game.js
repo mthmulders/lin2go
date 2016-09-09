@@ -48,7 +48,7 @@ export default (state = {}, action) => {
     }
     case START_GAME: {
       const targetWord = randomWord();
-      return { attempts: [], guess: '',  targetWord: targetWord };
+      return { attempts: [], guess: '', targetWord: targetWord.toUpperCase() };
     }
     default: {
       return state;

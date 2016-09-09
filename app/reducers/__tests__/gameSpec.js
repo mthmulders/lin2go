@@ -33,7 +33,7 @@ describe('The \'START_GAME\' action', () => {
     const state = reducer(initalState, action);
 
     // Assert
-    expect(state.targetWord).toBe(targetWord);
+    expect(state.targetWord).toBe(targetWord.toUpperCase());
   });
 
   it('should create an initial empty guess', () => {
