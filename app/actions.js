@@ -31,7 +31,7 @@ export const rateAttempt = (index) => {
           dispatch(rateAttempt(index + 1));
         }
         resolve();
-      }, 750);
+      }, 250);
     });
   };
 };
