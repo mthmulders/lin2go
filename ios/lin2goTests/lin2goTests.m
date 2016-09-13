@@ -16,11 +16,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React Native!"
 
-@interface lin2goTests : XCTestCase
+@interface LIN2GOTests : XCTestCase
 
 @end
 
-@implementation lin2goTests
+@implementation LIN2GOTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {
