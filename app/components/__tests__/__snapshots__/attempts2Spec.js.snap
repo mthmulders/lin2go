@@ -1,0 +1,174 @@
+exports[`The attempts component should give visual feedback on the score of the attempt 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "justifyContent": "center"
+    }
+  }>
+  <View
+    style={
+      Object {
+        "alignItems": "stretch",
+        "flexDirection": "row",
+        "justifyContent": "space-between"
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 18,
+          "justifyContent": "space-between",
+          "textAlign": "center",
+          "width": 25
+        }
+      }>
+      k
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 18,
+          "justifyContent": "space-between",
+          "textAlign": "center",
+          "width": 25
+        }
+      }>
+      i
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 18,
+          "justifyContent": "space-between",
+          "textAlign": "center",
+          "width": 25
+        }
+      }>
+      w
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 18,
+          "justifyContent": "space-between",
+          "textAlign": "center",
+          "width": 25
+        }
+      }>
+      i
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "backgroundColor": "red",
+          "fontSize": 18,
+          "justifyContent": "space-between",
+          "textAlign": "center",
+          "width": 25
+        }
+      }>
+      s
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "stretch",
+        "flexDirection": "row",
+        "justifyContent": "space-between"
+      }
+    }>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "backgroundColor": "yellow",
+          "fontSize": 18,
+          "justifyContent": "space-between",
+          "overflow": "hidden",
+          "textAlign": "center",
+          "width": 25
+        }
+      }>
+      p
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "backgroundColor": "yellow",
+          "fontSize": 18,
+          "justifyContent": "space-between",
+          "overflow": "hidden",
+          "textAlign": "center",
+          "width": 25
+        }
+      }>
+      e
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 18,
+          "justifyContent": "space-between",
+          "textAlign": "center",
+          "width": 25
+        }
+      }>
+      r
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "backgroundColor": "red",
+          "fontSize": 18,
+          "justifyContent": "space-between",
+          "textAlign": "center",
+          "width": 25
+        }
+      }>
+      e
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 18,
+          "justifyContent": "space-between",
+          "textAlign": "center",
+          "width": 25
+        }
+      }>
+      n
+    </Text>
+  </View>
+</View>
+`;

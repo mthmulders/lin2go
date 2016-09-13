@@ -8,8 +8,24 @@ export default StyleSheet.create({
   },
   attemptLetter: {
     fontSize: 18,
-    marginLeft: 10,
-    marginRight: 10
+    justifyContent: 'space-between',
+    textAlign: 'center',
+    width: 25
+  },
+  attemptLetterOnOtherLocation: {
+    backgroundColor: 'yellow',
+    fontSize: 18,
+    justifyContent: 'space-between',
+    overflow: 'hidden',
+    textAlign: 'center',
+    width: 25
+  },
+  attemptLetterOnRightLocation: {
+    backgroundColor: 'red',
+    fontSize: 18,
+    justifyContent: 'space-between',
+    textAlign: 'center',
+    width: 25
   },
   attempts: {
     alignItems: 'center',

@@ -13,7 +13,7 @@ describe('The attempts component', () => {
 
   it('should show previous attempts to guess the word', () => {
     // Arrange
-    const attempts = [{word: 'kiwis'}];
+    const attempts = [{word: 'kiwis', score:[0,0,0,0,0]}];
 
     // Act
     renderer.render(<Attempts attempts={ attempts } />);
