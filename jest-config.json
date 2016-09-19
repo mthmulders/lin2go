@@ -15,6 +15,5 @@
   "timers": "fake",
   "unmockedModulePathPatterns": [
     "react"
-  ],
-  "verbose": true
+  ]
 }
