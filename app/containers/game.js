@@ -1,33 +1,34 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
-import Button from 'apsl-react-native-button';
 
-import { cancelGame } from '../actions';
 import Attempts from '../components/attempts';
+import EndGame from '../components/endGame';
 import Guess from '../components/guess';
 import styles from '../styles';
 
-const Game = (props) => (
-  <View>
-    <Attempts />
-    <Guess style={ styles.guess } />
-    <Button style={ styles.button } onPress={ props.cancelGame }>
-      <Text style={ styles.buttonLabel }>Give up</Text>
-    </Button>
-  </View>
-);
+export const Game = (props) => {
+  const { lost, won } = props;
+  return (
+    <View>
+      <Attempts />
+      <Guess style={ styles.guess } />
+      <EndGame />
+    </View>
+  );
+};
+
+Game.propTypes = {
+  lost: React.PropTypes.bool,
+  won: React.PropTypes.bool
+};
 
 const mapStateToProps = (state) => {
   return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    cancelGame: () => {
-      dispatch(cancelGame());
-    }
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

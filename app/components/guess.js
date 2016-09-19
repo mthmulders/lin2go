@@ -7,7 +7,7 @@ import { addLetterToGuess } from '../actions';
 import styles from '../styles';
 
 export const Guess = (props) => {
-  const { addLetterToGuess, guess, prefill } = props;
+  const { addLetterToGuess, ended, guess, prefill } = props;
   // Keep a reference to each TextInput so we can auto-advance to the next one.
   const items = new Array(5);
 
@@ -36,17 +36,18 @@ export const Guess = (props) => {
 
   return (
     <View style={ styles.guess }>
-      { letterInput(0) }
-      { letterInput(1) }
-      { letterInput(2) }
-      { letterInput(3) }
-      { letterInput(4) }
+      { !ended && letterInput(0) }
+      { !ended && letterInput(1) }
+      { !ended && letterInput(2) }
+      { !ended && letterInput(3) }
+      { !ended && letterInput(4) }
     </View>
   )
 };
 
 const mapStateToProps = (state) => {
   return {
+    ended: state.game.lost || state.game.won,
     guess: state.game.guess,
     prefill: state.game.prefill
   };

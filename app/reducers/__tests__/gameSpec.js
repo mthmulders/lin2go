@@ -13,10 +13,12 @@ import {
   ADD_LETTER_TO_GUESS,
   addGuess,
   cancelGame,
+  looseGame,
   prefillGuess,
   rateAttempt,
   resetGuess,
-  startGame
+  startGame,
+  winGame
 } from '../../actions';
 import reducer from '../game';
 jest.mock('../../randomWord');
@@ -174,5 +176,35 @@ describe('The \'PREFILL_GUESS\' action', () => {
 
     // Assert
     expect(state.prefill).toEqual([undefined,undefined,undefined,'E','N']);
+  });
+});
+
+describe('The \'WIN_GAME\' action', () => {
+  it('should mark the game as won', () => {
+    // Arrange
+    const action = winGame();
+    const game = { };
+
+    // Act
+    const state = reducer(game, action);
+
+    // Assert
+    expect(state.won).toBe(true);
+    expect(state.lost).toBe(false);
+  });
+});
+
+describe('The \'LOOSE_GAME\' action', () => {
+  it('should mark the game as lost', () => {
+    // Arrange
+    const action = looseGame();
+    const game = { };
+
+    // Act
+    const state = reducer(game, action);
+
+    // Assert
+    expect(state.won).toBe(false);
+    expect(state.lost).toBe(true);
   });
 });

@@ -1,10 +1,12 @@
 import {
   ADD_LETTER_TO_GUESS,
   CANCEL_GAME,
+  LOOSE_GAME,
   PREFILL_GUESS,
   RATE_ATTEMPT,
   RESET_GUESS,
-  START_GAME
+  START_GAME,
+  WIN_GAME
 } from '../actions';
 
 import randomWord from '../randomWord';
@@ -23,6 +25,9 @@ export default (state = {}, action) => {
     }
     case CANCEL_GAME: {
       return { };
+    }
+    case LOOSE_GAME: {
+      return { ...state, lost: true, won: false };
     }
     case PREFILL_GUESS: {
       const prefill = new Array(5).fill(undefined);
@@ -61,6 +66,9 @@ export default (state = {}, action) => {
     case START_GAME: {
       const targetWord = randomWord();
       return { attempts: [], guess: '', targetWord: targetWord.toUpperCase() };
+    }
+    case WIN_GAME: {
+      return { ...state, lost: false, won: true };
     }
     default: {
       return state;

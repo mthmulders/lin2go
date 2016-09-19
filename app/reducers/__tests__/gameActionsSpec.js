@@ -9,15 +9,21 @@ const mockStore = configureStore(middlewares);
 
 import {
   addLetterToGuess, ADD_LETTER_TO_GUESS,
+  evalGameEnd, EVAL_GAME_END,
+  LOOSE_GAME,
   PREFILL_GUESS,
   rateAttempt, RATE_ATTEMPT,
-  RESET_GUESS
+  RESET_GUESS,
+  WIN_GAME
 } from '../../actions';
 
 describe('The action creator for \'RATE_ATTEMPT\' action', () => {
   it('should dispatch an \'RATE_ATTEMPT\' action with the desired index', (done) => {
     // Arrange
-    const initialState = { game: { guess: 'kiwis' } };
+    const initialState = { game: {
+      guess: 'kiwis',
+      attempts: [ { word: 'PEREN', score: [0,0,0,0,0] } ]
+    } };
     const store = mockStore(initialState);
 
     // Act
@@ -34,9 +40,12 @@ describe('The action creator for \'RATE_ATTEMPT\' action', () => {
   });
 
   describe('when the desired index is smaller than the length of a word', () => {
-    it('should wait a while and then dispatch the next \'RATE_ATTEMPT\' action', (done) => {
+    it('should dispatch the next \'RATE_ATTEMPT\' action', (done) => {
       // Arrange
-      const initialState = { game: { guess: 'kiwis' } };
+      const initialState = { game: {
+        guess: 'kiwis',
+        attempts: [ { word: 'PEREN', score: [0,0,0,0,0] } ]
+      } };
       const store = mockStore(initialState);
 
       // Act
@@ -45,13 +54,12 @@ describe('The action creator for \'RATE_ATTEMPT\' action', () => {
       // Assert
       jest.runAllTimers();
       result.then(() => {
-        expect(store.getActions().length).toBe(6);
-        // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
-        expect(store.getActions()[0]).toEqual({ type: RATE_ATTEMPT, index: 0 });
+        // Dispatched action to rate desired letter is tested in different spec.
         expect(store.getActions()[1]).toEqual({ type: RATE_ATTEMPT, index: 1 });
         expect(store.getActions()[2]).toEqual({ type: RATE_ATTEMPT, index: 2 });
         expect(store.getActions()[3]).toEqual({ type: RATE_ATTEMPT, index: 3 });
         expect(store.getActions()[4]).toEqual({ type: RATE_ATTEMPT, index: 4 });
+        // Other dispatched actions are tested in different specs.
         done();
       });
     });
@@ -60,24 +68,83 @@ describe('The action creator for \'RATE_ATTEMPT\' action', () => {
   describe('when the last letter was rated', () => {
     it('should dispatch an action to pre-fill the correctly guessed letters', (done) => {
       // Arrange
-      const initialState = { game: { guess: 'kiwis' } };
+      const initialState = { game: {
+        guess: 'kiwis',
+        attempts: [ { word: 'PEREN', score: [0,0,0,0,0] } ]
+      } };
       const store = mockStore(initialState);
 
       // Act
-      const result = store.dispatch(rateAttempt(0));
+      const result = store.dispatch(rateAttempt(4));
 
       // Assert
       jest.runAllTimers();
       result.then(() => {
-        expect(store.getActions().length).toBe(6);
-        // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
-        expect(store.getActions()[5]).toEqual({ type: PREFILL_GUESS });
+        expect(store.getActions().length).toBe(2);
+        // First dispatched action is rating the last letter of the guess.
+        expect(store.getActions()[1]).toEqual({ type: PREFILL_GUESS });
         done();
       });
     });
   });
 });
 
+describe('The action creator for \'EVAL_GAME_END\' action', () => {
+  describe('when the word is guessed correctly', () => {
+    it('should dispatch an action to win the game', () => {
+      // Arrange
+      const initialState = { game: { attempts: [
+        { score: [2, 2, 2, 2, 2 ], word: 'KIWIS' }
+      ]} };
+      const store = mockStore(initialState);
+
+      // Act
+      store.dispatch(evalGameEnd());
+
+      // Assert
+      expect(store.getActions().length).toBe(1);
+      expect(store.getActions()[0]).toEqual({ type: WIN_GAME });
+    });
+  });
+  describe('when the word is not guessed correctly', () => {
+    describe('when there are turns left', () => {
+      it('should not dispatch an action', () => {
+        // Arrange
+        const initialState = { game: { attempts: [
+          { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' }
+        ]} };
+        const store = mockStore(initialState);
+
+        // Act
+        store.dispatch(evalGameEnd());
+
+        // Assert
+        expect(store.getActions().length).toBe(0);
+      });
+    });
+
+    describe('when there are no turns left', () => {
+      it('should dispatch an action to loose the game', () => {
+        // Arrange
+        const initialState = { game: { attempts: [
+          { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
+          { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
+          { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
+          { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
+          { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
+        ]} };
+        const store = mockStore(initialState);
+
+        // Act
+        store.dispatch(evalGameEnd());
+
+        // Assert
+        expect(store.getActions().length).toBe(1);
+        expect(store.getActions()[0]).toEqual({ type: LOOSE_GAME });
+      });
+    });
+  });
+});
 
 describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
   // Since the mockStore does not actually perform the actions,

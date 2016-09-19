@@ -49,6 +49,9 @@ export default StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20
   },
+  endGame: {
+    marginTop: 40,
+  },
   guess: {
     alignItems: 'stretch',
     flexDirection: 'row',
