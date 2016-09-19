@@ -13,6 +13,7 @@ import {
   ADD_LETTER_TO_GUESS,
   addGuess,
   cancelGame,
+  prefillGuess,
   rateAttempt,
   resetGuess,
   startGame
@@ -154,5 +155,24 @@ describe('The \'RATE_ATTEMPT\' action', () => {
 
     // Assert
     expect(state.attempts[0].score[2]).toEqual(0);
+  });
+});
+
+describe('The \'PREFILL_GUESS\' action', () => {
+  it('should prefill all letters which have correctly been guessed in earlier attempts', () => {
+    // Arrange
+    const targetWord = 'PEREN';
+    const attempts = [
+      { word: 'GAPEN', score: [0, 0, 1, 2, 2] },
+      { word: 'STOEP', score: [0, 0, 0, 2, 1] }
+    ];
+    const action = prefillGuess();
+    const initialState = { targetWord, attempts };
+
+    // Act
+    const state = reducer(initialState, action);
+
+    // Assert
+    expect(state.prefill).toEqual([undefined,undefined,undefined,'E','N']);
   });
 });

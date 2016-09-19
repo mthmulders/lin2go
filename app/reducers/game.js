@@ -1,6 +1,7 @@
 import {
   ADD_LETTER_TO_GUESS,
   CANCEL_GAME,
+  PREFILL_GUESS,
   RATE_ATTEMPT,
   RESET_GUESS,
   START_GAME
@@ -22,6 +23,17 @@ export default (state = {}, action) => {
     }
     case CANCEL_GAME: {
       return { };
+    }
+    case PREFILL_GUESS: {
+      const prefill = new Array(5).fill(undefined);
+      state.attempts.forEach((attempt) => {
+        attempt.score.forEach((score, idx) => {
+          if (score === 2 && !prefill[idx]) {
+            prefill[idx] = attempt.word[idx];
+          }
+        });
+      });
+      return { ...state, prefill }
     }
     case RATE_ATTEMPT: {
       const target = state.targetWord;

@@ -17,11 +17,26 @@ describe('The guess component', () => {
 
     // Act
     renderer.render(<Guess guess={ guess } />);
+    const result = renderer.getRenderOutput();
 
     // Assert
-    const result = renderer.getRenderOutput();
     const textInputs = findAllWithType(result, TextInput);
-    const editables = textInputs.map((i) => i.props.editable);
+    const editables = textInputs.map(i => i.props.editable);
     expect(editables).toEqual([false, false, true, false, false]);
+  });
+
+  it('should prefill correctly guessed letters from earlier attempts', () => {
+    // Arrange
+    const prefill = new Array(5).fill(undefined);
+    prefill[0] = 'P';
+
+    // Act
+    renderer.render(<Guess guess={ 'ki' } prefill={ prefill } />);
+    const result = renderer.getRenderOutput();
+
+    // Assert
+    const textInputs = findAllWithType(result, TextInput);
+    const placeholders = textInputs.map(i => i.props.placeholder);
+    expect(placeholders).toEqual(['P', undefined, undefined, undefined, undefined]);
   });
 });

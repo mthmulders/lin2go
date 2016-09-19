@@ -9,6 +9,7 @@ const mockStore = configureStore(middlewares);
 
 import {
   addLetterToGuess, ADD_LETTER_TO_GUESS,
+  PREFILL_GUESS,
   rateAttempt, RATE_ATTEMPT,
   RESET_GUESS
 } from '../../actions';
@@ -44,7 +45,7 @@ describe('The action creator for \'RATE_ATTEMPT\' action', () => {
       // Assert
       jest.runAllTimers();
       result.then(() => {
-        expect(store.getActions().length).toBe(5);
+        expect(store.getActions().length).toBe(6);
         // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
         expect(store.getActions()[0]).toEqual({ type: RATE_ATTEMPT, index: 0 });
         expect(store.getActions()[1]).toEqual({ type: RATE_ATTEMPT, index: 1 });
@@ -54,7 +55,27 @@ describe('The action creator for \'RATE_ATTEMPT\' action', () => {
         done();
       });
     });
-  })
+  });
+
+  describe('when the last letter was rated', () => {
+    it('should dispatch an action to pre-fill the correctly guessed letters', (done) => {
+      // Arrange
+      const initialState = { game: { guess: 'kiwis' } };
+      const store = mockStore(initialState);
+
+      // Act
+      const result = store.dispatch(rateAttempt(0));
+
+      // Assert
+      jest.runAllTimers();
+      result.then(() => {
+        expect(store.getActions().length).toBe(6);
+        // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
+        expect(store.getActions()[5]).toEqual({ type: PREFILL_GUESS });
+        done();
+      });
+    });
+  });
 });
 
 
