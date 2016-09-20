@@ -64,8 +64,16 @@ export default (state = {}, action) => {
       return { ...state, guess: '' }
     }
     case START_GAME: {
-      const targetWord = randomWord();
-      return { attempts: [], guess: '', targetWord: targetWord.toUpperCase() };
+      const targetWord = randomWord().toUpperCase();
+      const prefill = new Array(5).fill(undefined);
+      const idx = Math.floor((Math.random() * 5));
+      prefill[idx] = targetWord[idx];
+      return {
+        attempts: [],
+        guess: '',
+        prefill: prefill,
+        targetWord: targetWord
+      };
     }
     case WIN_GAME: {
       return { ...state, lost: false, won: true };

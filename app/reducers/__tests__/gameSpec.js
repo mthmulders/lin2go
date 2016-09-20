@@ -62,6 +62,21 @@ describe('The \'START_GAME\' action', () => {
     // Assert
     expect(state.attempts).toEqual([]);
   });
+
+  it('should pre-fill one letter from the target word', () => {
+    // Arrange
+    const initalState = {};
+    const action = startGame();
+
+    // Act
+    const state = reducer(initalState, action);
+
+    // Assert
+    const targetWord = state.targetWord;
+    const letter = state.prefill.find(i => !!i);
+    expect(letter.length).toBe(1);
+    expect(targetWord.indexOf(letter[0])).toBeGreaterThan(-1);
+  });
 });
 
 describe('The \'CANCEL_GAME\' action', () => {
