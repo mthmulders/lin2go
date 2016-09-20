@@ -183,14 +183,32 @@ describe('The \'PREFILL_GUESS\' action', () => {
       { word: 'GAPEN', score: [0, 0, 1, 2, 2] },
       { word: 'STOEP', score: [0, 0, 0, 2, 1] }
     ];
+    const prefill = [undefined,undefined,undefined,'E',undefined];
+    const initialState = { targetWord, attempts, prefill };
     const action = prefillGuess();
-    const initialState = { targetWord, attempts };
 
     // Act
     const state = reducer(initialState, action);
 
     // Assert
     expect(state.prefill).toEqual([undefined,undefined,undefined,'E','N']);
+  });
+
+  it('should prefill the initial given letter even if it was not used in an attempt', () => {
+    // Arrange
+    const targetWord = 'APPEL';
+    const attempts = [
+      { word: 'KIEST', score: [0, 0, 1, 0, 0] }
+    ];
+    const prefill = [undefined,undefined,undefined,undefined,'L'];
+    const initialState = { targetWord, attempts, prefill };
+    const action = prefillGuess();
+
+    // Act
+    const state = reducer(initialState, action);
+
+    // Assert
+    expect(state.prefill).toEqual([undefined,undefined,undefined,undefined,'L']);
   });
 });
 

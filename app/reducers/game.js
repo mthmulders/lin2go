@@ -30,7 +30,7 @@ export default (state = {}, action) => {
       return { ...state, lost: true, won: false };
     }
     case PREFILL_GUESS: {
-      const prefill = new Array(5).fill(undefined);
+      const prefill = state.prefill.slice(0);
       state.attempts.forEach((attempt) => {
         attempt.score.forEach((score, idx) => {
           if (score === 2 && !prefill[idx]) {
