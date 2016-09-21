@@ -21,9 +21,10 @@ exports[`The attempts component should give visual feedback on the score of the 
       style={
         Object {
           "fontSize": 18,
+          "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 25
+          "width": 40
         }
       }>
       k
@@ -35,9 +36,10 @@ exports[`The attempts component should give visual feedback on the score of the 
       style={
         Object {
           "fontSize": 18,
+          "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 25
+          "width": 40
         }
       }>
       i
@@ -49,9 +51,10 @@ exports[`The attempts component should give visual feedback on the score of the 
       style={
         Object {
           "fontSize": 18,
+          "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 25
+          "width": 40
         }
       }>
       w
@@ -63,9 +66,10 @@ exports[`The attempts component should give visual feedback on the score of the 
       style={
         Object {
           "fontSize": 18,
+          "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 25
+          "width": 40
         }
       }>
       i
@@ -78,9 +82,10 @@ exports[`The attempts component should give visual feedback on the score of the 
         Object {
           "backgroundColor": "red",
           "fontSize": 18,
+          "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 25
+          "width": 40
         }
       }>
       s
@@ -102,10 +107,11 @@ exports[`The attempts component should give visual feedback on the score of the 
         Object {
           "backgroundColor": "yellow",
           "fontSize": 18,
+          "height": 40,
           "justifyContent": "space-between",
           "overflow": "hidden",
           "textAlign": "center",
-          "width": 25
+          "width": 40
         }
       }>
       p
@@ -118,10 +124,11 @@ exports[`The attempts component should give visual feedback on the score of the 
         Object {
           "backgroundColor": "yellow",
           "fontSize": 18,
+          "height": 40,
           "justifyContent": "space-between",
           "overflow": "hidden",
           "textAlign": "center",
-          "width": 25
+          "width": 40
         }
       }>
       e
@@ -133,9 +140,10 @@ exports[`The attempts component should give visual feedback on the score of the 
       style={
         Object {
           "fontSize": 18,
+          "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 25
+          "width": 40
         }
       }>
       r
@@ -148,9 +156,10 @@ exports[`The attempts component should give visual feedback on the score of the 
         Object {
           "backgroundColor": "red",
           "fontSize": 18,
+          "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 25
+          "width": 40
         }
       }>
       e
@@ -162,9 +171,10 @@ exports[`The attempts component should give visual feedback on the score of the 
       style={
         Object {
           "fontSize": 18,
+          "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 25
+          "width": 40
         }
       }>
       n
