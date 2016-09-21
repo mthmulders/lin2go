@@ -167,40 +167,62 @@ describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
   });
 
   describe('when the letter would make the guess complete', () => {
-    it('should dispatch an additional \'RATE_ATTEMPT\' action', (done) => {
-      // Arrange
-      const initialState = { game: { guess: 'kiwis' } };
-      const store = mockStore(initialState);
+    describe('when the word is valid', () => {
+      it('should dispatch an additional \'RATE_ATTEMPT\' action', (done) => {
+        // Arrange
+        const initialState = { game: { guess: 'kiwis' } };
+        const store = mockStore(initialState);
 
-      // Act
-      store.dispatch(addLetterToGuess(''));
+        // Act
+        store.dispatch(addLetterToGuess(''));
 
-      // Assert
-      setTimeout(() => {
-        expect(store.getActions().length).toBe(3);
-        // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
-        expect(store.getActions()[2]).toEqual({ type: RATE_ATTEMPT, index: 0 });
-        done();
-      }, 1500);
-      jest.runOnlyPendingTimers();
+        // Assert
+        setTimeout(() => {
+          expect(store.getActions().length).toBe(3);
+          // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
+          expect(store.getActions()[2]).toEqual({ type: RATE_ATTEMPT, index: 0 });
+          done();
+        }, 1500);
+        jest.runOnlyPendingTimers();
+      });
+
+      it('should dispatch an additional \'RESET_GUESS\' action', (done) => {
+        // Arrange
+        const initialState = { game: { guess: 'kiwis' } };
+        const store = mockStore(initialState);
+
+        // Act
+        store.dispatch(addLetterToGuess(''));
+
+        // Assert
+        setTimeout(() => {
+          expect(store.getActions().length).toBe(3);
+          // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
+          expect(store.getActions()[1]).toEqual({ type: RESET_GUESS });
+          done();
+        }, 1500);
+        jest.runOnlyPendingTimers();
+      });
     });
 
-    it('should dispatch an additional \'RESET_GUESS\' action', (done) => {
-      // Arrange
-      const initialState = { game: { guess: 'kiwis' } };
-      const store = mockStore(initialState);
+    describe('when the word is invalid', () => {
+      it('should dispatch an additional \'RESET_GUESS\' action', (done) => {
+        // Arrange
+        const initialState = { game: { guess: 'kiwis', invalidWord: true } };
+        const store = mockStore(initialState);
 
-      // Act
-      store.dispatch(addLetterToGuess(''));
+        // Act
+        store.dispatch(addLetterToGuess(''));
 
-      // Assert
-      setTimeout(() => {
-        expect(store.getActions().length).toBe(3);
-        // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
-        expect(store.getActions()[1]).toEqual({ type: RESET_GUESS });
-        done();
-      }, 1500);
-      jest.runOnlyPendingTimers();
+        // Assert
+        setTimeout(() => {
+          expect(store.getActions().length).toBe(2);
+          // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
+          expect(store.getActions()[1]).toEqual({ type: RESET_GUESS });
+          done();
+        }, 1500);
+        jest.runOnlyPendingTimers();
+      });
     });
   });
 });

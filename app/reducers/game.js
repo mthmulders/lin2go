@@ -10,17 +10,22 @@ import {
 } from '../actions';
 
 import randomWord from '../randomWord';
+import wordExists from '../wordExists';
 
 export default (state = {}, action) => {
   switch (action.type) {
     case ADD_LETTER_TO_GUESS: {
       const guess = state.guess + action.letter;
       if (guess.length === 5) {
-        const attempt = { word: guess.toUpperCase(), score: new Array(5) };
-        const attempts = [...state.attempts, attempt];
-        return { ...state, attempts, guess };
+        if (wordExists(guess)) {
+          const attempt = { word: guess.toUpperCase(), score: new Array(5) };
+          const attempts = [...state.attempts, attempt];
+          return { ...state, attempts, guess, invalidWord: false };
+        } else {
+          return { ...state, invalidWord: true };
+        }
       } else {
-        return { ...state, guess };
+        return { ...state, guess, invalidWord: false };
       }
     }
     case CANCEL_GAME: {

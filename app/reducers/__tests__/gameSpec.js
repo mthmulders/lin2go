@@ -21,8 +21,12 @@ import {
   winGame
 } from '../../actions';
 import reducer from '../game';
+
 jest.mock('../../randomWord');
 import randomWord from '../../randomWord';
+
+jest.mock('../../wordExists');
+import wordExists from '../../wordExists';
 
 describe('The \'START_GAME\' action', () => {
   it('should add a target word to the game state', () => {
@@ -108,17 +112,36 @@ describe('The \'ADD_LETTER_TO_GUESS\' action', () => {
   });
 
   describe('when the guess is 5 letters long', () => {
-    it('should register the attempt', () => {
-      // Arrange
-      const initalState = { attempts: [], guess: 'kiwi' };
-      const action = { type: ADD_LETTER_TO_GUESS, letter: 's' };
+    describe('when the word is valid', () => {
+      it('should register the attempt', () => {
+        // Arrange
+        const initalState = { attempts: [], guess: 'kiwi' };
+        const action = { type: ADD_LETTER_TO_GUESS, letter: 's' };
+        wordExists.mockImplementation(() => true);
 
-      // Act
-      const state = reducer(initalState, action);
+        // Act
+        const state = reducer(initalState, action);
 
-      // Assert
-      expect(state.attempts[0].word).toBe('KIWIS');
-      expect(state.attempts[0].score).toEqual([,,,,,]);
+        // Assert
+        expect(state.attempts.length).toBe(1);
+        expect(state.attempts[0].word).toBe('KIWIS');
+        expect(state.attempts[0].score).toEqual([,,,,,]);
+      });
+    });
+
+    describe('when the word is not valid', () => {
+      it('should not register the attempt', () => {
+        // Arrange
+        const initalState = { attempts: [], guess: 'kiwi' };
+        const action = { type: ADD_LETTER_TO_GUESS, letter: 's' };
+        wordExists.mockImplementation(() => false);
+
+        // Act
+        const state = reducer(initalState, action);
+
+        // Assert
+        expect(state.attempts.length).toBe(0);
+      });
     });
   });
 });
