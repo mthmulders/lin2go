@@ -4,7 +4,7 @@ export const EVAL_GAME_END = 'EVAL_GAME_END';
 export const HIDE_STATS = 'HIDE_STATS';
 export const LOOSE_GAME = 'LOOSE_GAME';
 export const PREFILL_GUESS = 'PREFILL_GUESS';
-export const RATE_ATTEMPT = 'RATE_ATTEMPT';
+export const RATE_LETTER = 'RATE_LETTER';
 export const RESET_GUESS = 'RESET_GUESS';
 export const SHOW_STATS = 'SHOW_STATS';
 export const START_GAME = 'START_GAME';
@@ -19,7 +19,7 @@ export const addLetterToGuess = (letter) => {
       dispatch(resetGuess());
     } else if (guess.length === 5) {
       dispatch(resetGuess());
-      dispatch(rateAttempt(0));
+      dispatch(rateLetter(0));
     }
   };
 };
@@ -48,13 +48,13 @@ export const looseGame = () => {
 export const prefillGuess = () => {
   return { type: PREFILL_GUESS };
 };
-export const rateAttempt = (index) => {
+export const rateLetter = (index) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        dispatch({ type: RATE_ATTEMPT, index });
+        dispatch({ type: RATE_LETTER, index });
         if (index <= 3) {
-          dispatch(rateAttempt(index + 1));
+          dispatch(rateLetter(index + 1));
         } else {
           dispatch(evalGameEnd());
           dispatch(prefillGuess());

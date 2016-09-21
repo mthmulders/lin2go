@@ -3,7 +3,7 @@ import {
   CANCEL_GAME,
   LOOSE_GAME,
   PREFILL_GUESS,
-  RATE_ATTEMPT,
+  RATE_LETTER,
   RESET_GUESS,
   START_GAME,
   WIN_GAME
@@ -45,7 +45,7 @@ export default (state = {}, action) => {
       });
       return { ...state, prefill }
     }
-    case RATE_ATTEMPT: {
+    case RATE_LETTER: {
       const target = state.targetWord;
       const attempt = state.attempts[state.attempts.length - 1];
 

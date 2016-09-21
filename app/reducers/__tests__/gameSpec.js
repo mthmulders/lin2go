@@ -15,7 +15,7 @@ import {
   cancelGame,
   looseGame,
   prefillGuess,
-  rateAttempt,
+  rateLetter,
   resetGuess,
   startGame,
   winGame
@@ -160,11 +160,11 @@ describe('The \'RESET_GUESS\' action', () => {
   });
 });
 
-describe('The \'RATE_ATTEMPT\' action', () => {
+describe('The \'RATE_LETTER\' action', () => {
   it('should rate a letter that is on the right location with 2', () => {
     // Arrange
     const initalState = { targetWord: 'kiwis', attempts: [ { word: 'kiest', score: new Array(5) } ] };
-    const action = { type: 'RATE_ATTEMPT', index: 0 };
+    const action = { type: 'RATE_LETTER', index: 0 };
 
     // Act
     const state = reducer(initalState, action);
@@ -176,7 +176,7 @@ describe('The \'RATE_ATTEMPT\' action', () => {
   it('should rate a letter that is on a wrong location with 1', () => {
     // Arrange
     const initalState = { targetWord: 'kiwis', attempts: [ { word: 'kiest', score: new Array(5) } ] };
-    const action = { type: 'RATE_ATTEMPT', index: 3 };
+    const action = { type: 'RATE_LETTER', index: 3 };
 
     // Act
     const state = reducer(initalState, action);
@@ -188,7 +188,7 @@ describe('The \'RATE_ATTEMPT\' action', () => {
   it('should rate a letter that is competely wrong location with 0', () => {
     // Arrange
     const initalState = { targetWord: 'kiwis', attempts: [ { word: 'kiest', score: new Array(5) } ] };
-    const action = { type: 'RATE_ATTEMPT', index: 2 };
+    const action = { type: 'RATE_LETTER', index: 2 };
 
     // Act
     const state = reducer(initalState, action);

@@ -12,13 +12,13 @@ import {
   evalGameEnd, EVAL_GAME_END,
   LOOSE_GAME,
   PREFILL_GUESS,
-  rateAttempt, RATE_ATTEMPT,
+  rateLetter, RATE_LETTER,
   RESET_GUESS,
   WIN_GAME
 } from '../../actions';
 
-describe('The action creator for \'RATE_ATTEMPT\' action', () => {
-  it('should dispatch an \'RATE_ATTEMPT\' action with the desired index', (done) => {
+describe('The action creator for \'RATE_LETTER\' action', () => {
+  it('should dispatch an \'RATE_LETTER\' action with the desired index', (done) => {
     // Arrange
     const initialState = { game: {
       guess: 'kiwis',
@@ -27,20 +27,20 @@ describe('The action creator for \'RATE_ATTEMPT\' action', () => {
     const store = mockStore(initialState);
 
     // Act
-    const result = store.dispatch(rateAttempt(0));
+    const result = store.dispatch(rateLetter(0));
     jest.runOnlyPendingTimers();
 
     // Assert
     result.then(() => {
       expect(store.getActions().length).toBe(1);
       // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
-      expect(store.getActions()[0]).toEqual({ type: RATE_ATTEMPT, index: 0 });
+      expect(store.getActions()[0]).toEqual({ type: RATE_LETTER, index: 0 });
       done();
     });
   });
 
   describe('when the desired index is smaller than the length of a word', () => {
-    it('should dispatch the next \'RATE_ATTEMPT\' action', (done) => {
+    it('should dispatch the next \'RATE_LETTER\' action', (done) => {
       // Arrange
       const initialState = { game: {
         guess: 'kiwis',
@@ -49,16 +49,16 @@ describe('The action creator for \'RATE_ATTEMPT\' action', () => {
       const store = mockStore(initialState);
 
       // Act
-      const result = store.dispatch(rateAttempt(0));
+      const result = store.dispatch(rateLetter(0));
 
       // Assert
       jest.runAllTimers();
       result.then(() => {
         // Dispatched action to rate desired letter is tested in different spec.
-        expect(store.getActions()[1]).toEqual({ type: RATE_ATTEMPT, index: 1 });
-        expect(store.getActions()[2]).toEqual({ type: RATE_ATTEMPT, index: 2 });
-        expect(store.getActions()[3]).toEqual({ type: RATE_ATTEMPT, index: 3 });
-        expect(store.getActions()[4]).toEqual({ type: RATE_ATTEMPT, index: 4 });
+        expect(store.getActions()[1]).toEqual({ type: RATE_LETTER, index: 1 });
+        expect(store.getActions()[2]).toEqual({ type: RATE_LETTER, index: 2 });
+        expect(store.getActions()[3]).toEqual({ type: RATE_LETTER, index: 3 });
+        expect(store.getActions()[4]).toEqual({ type: RATE_LETTER, index: 4 });
         // Other dispatched actions are tested in different specs.
         done();
       });
@@ -75,7 +75,7 @@ describe('The action creator for \'RATE_ATTEMPT\' action', () => {
       const store = mockStore(initialState);
 
       // Act
-      const result = store.dispatch(rateAttempt(4));
+      const result = store.dispatch(rateLetter(4));
 
       // Assert
       jest.runAllTimers();
@@ -168,7 +168,7 @@ describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
 
   describe('when the letter would make the guess complete', () => {
     describe('when the word is valid', () => {
-      it('should dispatch an additional \'RATE_ATTEMPT\' action', (done) => {
+      it('should dispatch an additional \'RATE_LETTER\' action', (done) => {
         // Arrange
         const initialState = { game: { guess: 'kiwis' } };
         const store = mockStore(initialState);
@@ -180,7 +180,7 @@ describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
         setTimeout(() => {
           expect(store.getActions().length).toBe(3);
           // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
-          expect(store.getActions()[2]).toEqual({ type: RATE_ATTEMPT, index: 0 });
+          expect(store.getActions()[2]).toEqual({ type: RATE_LETTER, index: 0 });
           done();
         }, 1500);
         jest.runOnlyPendingTimers();
