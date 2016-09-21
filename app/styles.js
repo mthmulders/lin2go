@@ -8,24 +8,27 @@ export default StyleSheet.create({
   },
   attemptLetter: {
     fontSize: 18,
+    height: 40,
     justifyContent: 'space-between',
     textAlign: 'center',
-    width: 25
+    width: 40
   },
   attemptLetterOnOtherLocation: {
     backgroundColor: 'yellow',
     fontSize: 18,
+    height: 40,
     justifyContent: 'space-between',
     overflow: 'hidden',
     textAlign: 'center',
-    width: 25
+    width: 40
   },
   attemptLetterOnRightLocation: {
     backgroundColor: 'red',
     fontSize: 18,
+    height: 40,
     justifyContent: 'space-between',
     textAlign: 'center',
-    width: 25
+    width: 40
   },
   attempts: {
     alignItems: 'center',
@@ -56,6 +59,11 @@ export default StyleSheet.create({
     alignItems: 'stretch',
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  letterInput: {
+    height: 60,
+    textAlign: 'center',
+    width: 40
   },
   logo: {
      marginBottom: 40,

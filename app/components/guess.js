@@ -30,6 +30,7 @@ export const Guess = (props) => {
       placeholder={ prefill ? prefill[idx] : undefined }
       ref={ (ref) => items[idx] = ref }
       returnKeyType={ 'next' }
+      style={ styles.letterInput }
       value={ idx <= guess.length ? guess[idx] : '' }
     />
   );
