@@ -6,6 +6,7 @@ export const LOOSE_GAME = 'LOOSE_GAME';
 export const PREFILL_GUESS = 'PREFILL_GUESS';
 export const RATE_LETTER = 'RATE_LETTER';
 export const RESET_GUESS = 'RESET_GUESS';
+export const RESTORE_STATS = 'RESTORE_STATS';
 export const SHOW_STATS = 'SHOW_STATS';
 export const START_GAME = 'START_GAME';
 export const WIN_GAME = 'WIN_GAME';
@@ -66,6 +67,9 @@ export const rateLetter = (index) => {
 };
 export const resetGuess = () => {
   return { type: RESET_GUESS };
+};
+export const restoreStats = (losses, wins) => {
+  return { type: RESTORE_STATS, losses, wins };
 };
 export const showStats = () => {
   return { type: SHOW_STATS };

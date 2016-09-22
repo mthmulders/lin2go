@@ -19,6 +19,9 @@ const logger = createLogger({
 const middleware = applyMiddleware(thunkMiddleware, logger);
 const store = createStore(reducers, {}, middleware);
 
+import { loadHistory } from  './statsStorage'
+loadHistory(store.dispatch)
+
 export default () => (
   <Provider store={ store }>
     <App />

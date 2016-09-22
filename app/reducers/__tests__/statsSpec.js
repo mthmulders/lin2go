@@ -1,10 +1,10 @@
 jest.unmock('../../actions');
 jest.unmock('../stats');
 
-import { cancelGame, looseGame, winGame }  from '../../actions';
+import { cancelGame, looseGame, restoreStats, winGame }  from '../../actions';
 import reducer from '../stats';
 
-const initalState = { losses: 1, wins: 3 };
+const initialState = { losses: 1, wins: 3 };
 
 describe('The \'LOOSE_GAME\' action', () => {
   it('should increment the number of losses with 1', () => {
@@ -12,7 +12,7 @@ describe('The \'LOOSE_GAME\' action', () => {
     const action = looseGame();
 
     // Act
-    const state = reducer(initalState, action);
+    const state = reducer(initialState, action);
 
     // Assert
     expect(state.losses).toBe(2);
@@ -23,7 +23,7 @@ describe('The \'LOOSE_GAME\' action', () => {
     const action = looseGame();
 
     // Act
-    const state = reducer(initalState, action);
+    const state = reducer(initialState, action);
 
     // Assert
     expect(state.wins).toBe(3);
@@ -36,7 +36,7 @@ describe('The \'WIN_GAME\' action', () => {
     const action = winGame();
 
     // Act
-    const state = reducer(initalState, action);
+    const state = reducer(initialState, action);
 
     // Assert
     expect(state.wins).toBe(4);
@@ -47,9 +47,23 @@ describe('The \'WIN_GAME\' action', () => {
     const action = winGame();
 
     // Act
-    const state = reducer(initalState, action);
+    const state = reducer(initialState, action);
 
     // Assert
     expect(state.losses).toBe(1);
+  });
+});
+
+describe('The \'RESTORE_STATS\' action', () => {
+  it('should overwrite game stats with given values', () => {
+    // Arrange
+    const action = restoreStats(3, 4);
+
+    // Act
+    const state = reducer(initialState, action);
+
+    // Assert
+    expect(state.losses).toBe(3);
+    expect(state.wins).toBe(4);
   });
 });
