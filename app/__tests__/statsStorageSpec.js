@@ -8,11 +8,15 @@ import { AsyncStorage } from 'react-native';
 import Toast from 'react-native-simple-toast';
 
 import { loadHistory, saveHistory } from '../statsStorage';
-import { restoreStats }  from '../actions';
+import { restoreStats } from '../actions';
 
 jest.useFakeTimers();
 
-describe('Loading the stats', () => {
+describe('Statistics storage and retrieval', () => {
+  beforeEach(() => {
+    Toast.show.mockClear();
+  });
+
   it('should retrieve the number of losses and wins from local storage', (done) => {
     // Arrange
     const dispatch = jest.fn();
@@ -70,13 +74,33 @@ describe('Loading the stats', () => {
     expect(dispatch).not.toBeCalled();
     expect(Toast.show).toBeCalled();
   });
-});
 
-describe('Saving the stats', () => {
   it('should save the number of losses and wins to local storage', (done) => {
     // Arrange
     AsyncStorage.multiSet = jest.fn(() => {
-      return Promise.resolve(['An error',undefined]);
+      return Promise.resolve([undefined,undefined]);
+    });
+    const losses = 3;
+    const wins = 4;
+
+    // Act
+    expect(Toast.show).not.toBeCalled();
+    saveHistory(losses, wins);
+    expect(Toast.show).not.toBeCalled();
+
+    // Assert
+    setTimeout(() => {
+      expect(AsyncStorage.multiSet).toBeCalledWith([["@stats:losses",losses],["@stats:wins",wins]]);
+      expect(Toast.show).not.toBeCalled();
+      done();
+    }, 1500);
+    jest.runOnlyPendingTimers();
+  });
+
+  it('should display a toast when an error occurred', (done) => {
+    // Arrange
+    AsyncStorage.multiSet = jest.fn(() => {
+      return Promise.resolve(['An error',{message:'Another error'}]);
     });
     const losses = 3;
     const wins = 4;
@@ -91,9 +115,5 @@ describe('Saving the stats', () => {
       done();
     }, 1500);
     jest.runOnlyPendingTimers();
-  });
-
-  it('should display a toast when an error occurred', () => {
-
   });
 });
