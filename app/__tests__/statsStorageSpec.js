@@ -1,20 +1,17 @@
 jest.unmock('../statsStorage');
-jest.mock('react-native-simple-toast', () => {
-  return { show: jest.fn() };
-});
 jest.mock('../actions');
 
 import { AsyncStorage } from 'react-native';
-import Toast from 'react-native-simple-toast';
 
 import { loadHistory, saveHistory } from '../statsStorage';
-import { restoreStats } from '../actions';
+import { restoreStats, showMessage } from '../actions';
 
 jest.useFakeTimers();
 
 describe('Statistics storage and retrieval', () => {
   beforeEach(() => {
-    Toast.show.mockClear();
+    restoreStats.mockClear();
+    showMessage.mockClear();
   });
 
   it('should retrieve the number of losses and wins from local storage', (done) => {
@@ -33,7 +30,7 @@ describe('Statistics storage and retrieval', () => {
     setTimeout(() => {
       expect(restoreStats).toBeCalledWith(3, 4);
       expect(dispatch).toBeCalledWith(action);
-      expect(Toast.show).not.toBeCalled();
+      expect(showMessage).not.toBeCalled();
       done();
     }, 1500);
     jest.runOnlyPendingTimers();
@@ -55,13 +52,13 @@ describe('Statistics storage and retrieval', () => {
     setTimeout(() => {
       expect(restoreStats).toBeCalledWith(0, 0);
       expect(dispatch).toBeCalledWith(action);
-      expect(Toast.show).not.toBeCalled();
+      expect(showMessage).not.toBeCalled();
       done();
     }, 1500);
     jest.runOnlyPendingTimers();
   });
 
-  it('should display a toast when an error occurred', () => {
+  it('should display a message when an error occurred', () => {
     // Arrange
     const dispatch = jest.fn();
     const error = { message: 'Booh!' };
@@ -71,12 +68,13 @@ describe('Statistics storage and retrieval', () => {
     loadHistory(dispatch);
 
     // Assert
-    expect(dispatch).not.toBeCalled();
-    expect(Toast.show).toBeCalled();
+    expect(dispatch).toBeCalled();
+    expect(showMessage).toBeCalled();
   });
 
   it('should save the number of losses and wins to local storage', (done) => {
     // Arrange
+    const dispatch = jest.fn();
     AsyncStorage.multiSet = jest.fn(() => {
       return Promise.resolve([undefined,undefined]);
     });
@@ -84,14 +82,13 @@ describe('Statistics storage and retrieval', () => {
     const wins = 4;
 
     // Act
-    expect(Toast.show).not.toBeCalled();
-    saveHistory(losses, wins);
-    expect(Toast.show).not.toBeCalled();
+    saveHistory(dispatch, losses, wins);
 
     // Assert
     setTimeout(() => {
       expect(AsyncStorage.multiSet).toBeCalledWith([["@stats:losses",losses],["@stats:wins",wins]]);
-      expect(Toast.show).not.toBeCalled();
+      expect(showMessage).not.toBeCalled();
+      expect(dispatch).not.toBeCalled();
       done();
     }, 1500);
     jest.runOnlyPendingTimers();
@@ -99,6 +96,7 @@ describe('Statistics storage and retrieval', () => {
 
   it('should display a toast when an error occurred', (done) => {
     // Arrange
+    const dispatch = jest.fn();
     AsyncStorage.multiSet = jest.fn(() => {
       return Promise.resolve(['An error',{message:'Another error'}]);
     });
@@ -106,12 +104,13 @@ describe('Statistics storage and retrieval', () => {
     const wins = 4;
 
     // Act
-    saveHistory(losses, wins);
+    saveHistory(dispatch, losses, wins);
 
     // Assert
     setTimeout(() => {
       expect(AsyncStorage.multiSet).toBeCalledWith([["@stats:losses",losses],["@stats:wins",wins]]);
-      expect(Toast.show).toBeCalled();
+      expect(showMessage).toBeCalled();
+      expect(dispatch).toBeCalled();
       done();
     }, 1500);
     jest.runOnlyPendingTimers();

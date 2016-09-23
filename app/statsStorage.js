@@ -1,7 +1,6 @@
 import { AsyncStorage } from 'react-native';
-import Toast from 'react-native-simple-toast';
 
-import { restoreStats }  from './actions';
+import { showMessage, restoreStats }  from './actions';
 
 const LOSSES = '@stats:losses';
 const WINS = '@stats:wins';
@@ -17,11 +16,12 @@ export const loadHistory = async (dispatch) => {
       dispatch(action);
     }
   } catch (error) {
-    Toast.show('Error retrieving stats: ' + error.message || error, Toast.LONG);
+    const action = showMessage('Error retrieving stats: ' + error.message);
+    dispatch(action);
   }
 };
 
-export const saveHistory = async (losses, wins) => {
+export const saveHistory = async (dispatch, losses, wins) => {
   try {
     const errors = await AsyncStorage.multiSet([
       [LOSSES, losses],
@@ -29,10 +29,12 @@ export const saveHistory = async (losses, wins) => {
     ]);
     if (errors !== null && errors !== undefined) {
       errors.filter(e => !!e).forEach(error => {
-        Toast.show('Error saving stats: ' + error.message || error, Toast.LONG);
+        const action = showMessage('Error saving stats: ' + error.message || error);
+        dispatch(action);
       });
     }
   } catch (error) {
-    Toast.show('Error saving stats: ' + error.message || error, Toast.LONG);
+    const action = showMessage('Error saving stats: ' + error.message || error);
+    dispatch();
   }
 };
