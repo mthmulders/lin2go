@@ -1,4 +1,5 @@
 {
   "plugins": ["transform-object-rest-spread"],
-  "presets": ["react", "react-native"]
+  "presets": ["react", "react-native"],
+  "sourceMaps": true
 }
