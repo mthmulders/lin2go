@@ -9,7 +9,7 @@ const mockStore = configureStore(middlewares);
 
 import {
   addLetterToGuess, ADD_LETTER_TO_GUESS,
-  evalGameEnd, EVAL_GAME_END,
+  evalGameEnd,
   invalidWord,
   LOOSE_GAME,
   PREFILL_GUESS,

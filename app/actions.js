@@ -1,7 +1,6 @@
 export const ADD_LETTER_TO_GUESS = 'ADD_LETTER_TO_GUESS';
 export const CANCEL_GAME = 'CANCEL_GAME';
 export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
-export const EVAL_GAME_END = 'EVAL_GAME_END';
 export const HIDE_STATS = 'HIDE_STATS';
 export const INVALID_WORD = 'INVALID_WORD';
 export const LOOSE_GAME = 'LOOSE_GAME';
