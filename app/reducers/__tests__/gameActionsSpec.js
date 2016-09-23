@@ -10,14 +10,20 @@ const mockStore = configureStore(middlewares);
 import {
   addLetterToGuess, ADD_LETTER_TO_GUESS,
   evalGameEnd, EVAL_GAME_END,
+  invalidWord,
   LOOSE_GAME,
   PREFILL_GUESS,
   rateLetter, RATE_LETTER,
   RESET_GUESS,
+  SHOW_MESSAGE,
   WIN_GAME
 } from '../../actions';
 
 jest.useFakeTimers();
+
+// Since the mockStore does not actually invoke the reducer(s),
+// these tests set an initialState that looks as if the
+// action itself had already been processed by the reducer.
 
 describe('The action creator for \'RATE_LETTER\' action', () => {
   it('should dispatch an \'RATE_LETTER\' action with the desired index', (done) => {
@@ -148,15 +154,27 @@ describe('The action creator for \'EVAL_GAME_END\' action', () => {
   });
 });
 
-describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
-  // Since the mockStore does not actually perform the actions,
-  // these tests set an initialState that looks as if the ADD_LETTER_TO_GUESS
-  // action itself had already been performed.
+describe('The action creator for \'INVALID_WORD\' actions', () => {
+  it('should show a message', () => {
+    // Arrange
+    const initialState = { };
+    const store = mockStore(initialState);
 
+    // Act
+    store.dispatch(invalidWord());
+
+    // Assert
+    expect(store.getActions().length).toBe(1);
+    expect(store.getActions()[0].type).toBe(SHOW_MESSAGE);
+    expect(store.getActions()[0].message).toMatch(/word does not exist/i);
+  });
+});
+
+describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
   describe('when the letter would not make the guess complete', () => {
     it('should dispatch an \'ADD_LETTER_TO_GUESS\' action', () => {
       // Arrange
-      const initialState = { game: { guess: '' } };
+      const initialState = { game: { guess: '', attempts: [] } };
       const store = mockStore(initialState);
 
       // Act
@@ -172,7 +190,7 @@ describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
     describe('when the word is valid', () => {
       it('should dispatch an additional \'RATE_LETTER\' action', (done) => {
         // Arrange
-        const initialState = { game: { guess: 'kiwis' } };
+        const initialState = { game: { guess: 'kiwis', attempts: [] } };
         const store = mockStore(initialState);
 
         // Act
@@ -190,7 +208,7 @@ describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
 
       it('should dispatch an additional \'RESET_GUESS\' action', (done) => {
         // Arrange
-        const initialState = { game: { guess: 'kiwis' } };
+        const initialState = { game: { guess: 'kiwis', attempts: [] } };
         const store = mockStore(initialState);
 
         // Act
@@ -210,7 +228,7 @@ describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
     describe('when the word is invalid', () => {
       it('should dispatch an additional \'RESET_GUESS\' action', (done) => {
         // Arrange
-        const initialState = { game: { guess: 'kiwis', invalidWord: true } };
+        const initialState = { game: { guess: 'kiwis', attempts: [], invalidWord: true } };
         const store = mockStore(initialState);
 
         // Act
@@ -218,9 +236,25 @@ describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
 
         // Assert
         setTimeout(() => {
-          expect(store.getActions().length).toBe(2);
           // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
           expect(store.getActions()[1]).toEqual({ type: RESET_GUESS });
+          done();
+        }, 1500);
+        jest.runOnlyPendingTimers();
+      });
+
+      it('should dispatch an additional \'SHOW_MESSAGE\' action', (done) => {
+        // Arrange
+        const initialState = { game: { guess: 'kiwis', attempts: [], invalidWord: true } };
+        const store = mockStore(initialState);
+
+        // Act
+        store.dispatch(addLetterToGuess(''));
+
+        // Assert
+        setTimeout(() => {
+          // Prefer to use toContainEqual, see https://github.com/facebook/jest/issues/1369
+          expect(store.getActions()[2]).toEqual({ type: SHOW_MESSAGE, message: 'This word does not exist. Try again...' });
           done();
         }, 1500);
         jest.runOnlyPendingTimers();

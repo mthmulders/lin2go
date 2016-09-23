@@ -3,6 +3,7 @@ export const CANCEL_GAME = 'CANCEL_GAME';
 export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
 export const EVAL_GAME_END = 'EVAL_GAME_END';
 export const HIDE_STATS = 'HIDE_STATS';
+export const INVALID_WORD = 'INVALID_WORD';
 export const LOOSE_GAME = 'LOOSE_GAME';
 export const PREFILL_GUESS = 'PREFILL_GUESS';
 export const RATE_LETTER = 'RATE_LETTER';
@@ -17,9 +18,9 @@ export const addLetterToGuess = (letter) => {
   return (dispatch, getState) => {
     dispatch({ type: ADD_LETTER_TO_GUESS, letter: letter });
     const guess = getState().game.guess;
-    const invalidWord = getState().game.invalidWord;
-    if (invalidWord) {
+    if (getState().game.invalidWord) {
       dispatch(resetGuess());
+      dispatch(invalidWord());
     } else if (guess.length === 5) {
       dispatch(resetGuess());
       dispatch(rateLetter(0));
@@ -47,6 +48,11 @@ export const evalGameEnd = () => {
 };
 export const hideStats = () => {
   return { type: HIDE_STATS };
+};
+export const invalidWord = () => {
+  return (dispatch, getState) => {
+    dispatch(showMessage('This word does not exist. Try again...'))
+  };
 };
 export const looseGame = () => {
   return { type: LOOSE_GAME };
