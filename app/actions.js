@@ -13,6 +13,8 @@ export const SHOW_MESSAGE = 'SHOW_MESSAGE';
 export const START_GAME = 'START_GAME';
 export const WIN_GAME = 'WIN_GAME';
 
+import { saveHistory } from './statsStorage';
+
 export const addLetterToGuess = (letter) => {
   return (dispatch, getState) => {
     dispatch({ type: ADD_LETTER_TO_GUESS, letter: letter });
@@ -54,7 +56,10 @@ export const invalidWord = () => {
   };
 };
 export const looseGame = () => {
-  return { type: LOOSE_GAME };
+  return (dispatch, getState) => {
+    dispatch({ type: LOOSE_GAME });
+    saveHistory(dispatch, getState().stats.losses, getState().stats.wins);
+  };
 };
 export const prefillGuess = () => {
   return { type: PREFILL_GUESS };
@@ -91,5 +96,8 @@ export const startGame = () => {
   return { type: START_GAME };
 };
 export const winGame = () => {
-  return { type: WIN_GAME };
+  return (dispatch, getState) => {
+    dispatch({ type: WIN_GAME });
+    saveHistory(dispatch, getState().stats.losses, getState().stats.wins);
+  };
 }

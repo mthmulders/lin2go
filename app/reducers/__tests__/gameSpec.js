@@ -13,12 +13,12 @@ import {
   ADD_LETTER_TO_GUESS,
   addGuess,
   cancelGame,
-  looseGame,
+  LOOSE_GAME,
   prefillGuess,
   rateLetter,
   resetGuess,
   startGame,
-  winGame
+  WIN_GAME
 } from '../../actions';
 import reducer from '../game';
 
@@ -238,7 +238,7 @@ describe('The \'PREFILL_GUESS\' action', () => {
 describe('The \'WIN_GAME\' action', () => {
   it('should mark the game as won', () => {
     // Arrange
-    const action = winGame();
+    const action = { type: WIN_GAME };
     const game = { };
 
     // Act
@@ -253,7 +253,7 @@ describe('The \'WIN_GAME\' action', () => {
 describe('The \'LOOSE_GAME\' action', () => {
   it('should mark the game as lost', () => {
     // Arrange
-    const action = looseGame();
+    const action = { type: LOOSE_GAME };
     const game = { };
 
     // Act

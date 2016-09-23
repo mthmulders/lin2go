@@ -1,7 +1,7 @@
 jest.unmock('../../actions');
 jest.unmock('../stats');
 
-import { cancelGame, looseGame, restoreStats, winGame }  from '../../actions';
+import { cancelGame, LOOSE_GAME, restoreStats, WIN_GAME }  from '../../actions';
 import reducer from '../stats';
 
 const initialState = { losses: 1, wins: 3 };
@@ -9,7 +9,7 @@ const initialState = { losses: 1, wins: 3 };
 describe('The \'LOOSE_GAME\' action', () => {
   it('should increment the number of losses with 1', () => {
     // Arrange
-    const action = looseGame();
+    const action = { type: LOOSE_GAME };
 
     // Act
     const state = reducer(initialState, action);
@@ -20,7 +20,7 @@ describe('The \'LOOSE_GAME\' action', () => {
 
   it('should keep the number of wins unchanged', () => {
     // Arrange
-    const action = looseGame();
+    const action = { type: LOOSE_GAME };
 
     // Act
     const state = reducer(initialState, action);
@@ -33,7 +33,7 @@ describe('The \'LOOSE_GAME\' action', () => {
 describe('The \'WIN_GAME\' action', () => {
   it('should increment the number of wins with 1', () => {
     // Arrange
-    const action = winGame();
+    const action = { type: WIN_GAME };
 
     // Act
     const state = reducer(initialState, action);
@@ -44,7 +44,7 @@ describe('The \'WIN_GAME\' action', () => {
 
   it('should keep the number of losses unchanged', () => {
     // Arrange
-    const action = winGame();
+    const action = { type: WIN_GAME };
 
     // Act
     const state = reducer(initialState, action);

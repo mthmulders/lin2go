@@ -2,6 +2,9 @@ jest.unmock('../../actions');
 jest.unmock('redux-mock-store');
 jest.unmock('redux-thunk');
 
+jest.mock('../../statsStorage');
+import { loadHistory, saveHistory } from '../../statsStorage';
+
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 const middlewares = [thunk];
@@ -11,12 +14,12 @@ import {
   addLetterToGuess, ADD_LETTER_TO_GUESS,
   evalGameEnd,
   invalidWord,
-  LOOSE_GAME,
+  looseGame, LOOSE_GAME,
   PREFILL_GUESS,
   rateLetter, RATE_LETTER,
   RESET_GUESS,
   SHOW_MESSAGE,
-  WIN_GAME
+  winGame, WIN_GAME
 } from '../../actions';
 
 jest.useFakeTimers();
@@ -101,9 +104,14 @@ describe('The action creator for \'EVAL_GAME_END\' action', () => {
   describe('when the word is guessed correctly', () => {
     it('should dispatch an action to win the game', () => {
       // Arrange
-      const initialState = { game: { attempts: [
-        { score: [2, 2, 2, 2, 2 ], word: 'KIWIS' }
-      ]} };
+      const initialState = {
+        game: {
+          attempts: [
+            { score: [2, 2, 2, 2, 2 ], word: 'KIWIS' }
+          ]
+        },
+        stats: { }
+      };
       const store = mockStore(initialState);
 
       // Act
@@ -114,6 +122,7 @@ describe('The action creator for \'EVAL_GAME_END\' action', () => {
       expect(store.getActions()[0]).toEqual({ type: WIN_GAME });
     });
   });
+  
   describe('when the word is not guessed correctly', () => {
     describe('when there are turns left', () => {
       it('should not dispatch an action', () => {
@@ -134,13 +143,18 @@ describe('The action creator for \'EVAL_GAME_END\' action', () => {
     describe('when there are no turns left', () => {
       it('should dispatch an action to loose the game', () => {
         // Arrange
-        const initialState = { game: { attempts: [
-          { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
-          { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
-          { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
-          { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
-          { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
-        ]} };
+        const initialState = {
+          game: {
+            attempts: [
+              { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
+              { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
+              { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
+              { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
+              { score: [0, 0, 0, 0, 0 ], word: 'KIWIS' },
+            ]
+          },
+          stats: { }
+        };
         const store = mockStore(initialState);
 
         // Act
@@ -260,5 +274,51 @@ describe('The action creator for \'ADD_LETTER_TO_GUESS\' action', () => {
         jest.runOnlyPendingTimers();
       });
     });
+  });
+
+  afterEach(() => jest.clearAllTimers());
+});
+
+describe('The action creator for \'LOOSE_GAME\' action', () => {
+  it('should store the updated stats to persistent storage', (done) => {
+    // Arrange
+    saveHistory.mockClear();
+    const initialState = { stats: { losses: 3, wins: 4 } };
+    const store = mockStore(initialState);
+
+    // Act
+    store.dispatch(looseGame());
+
+    // Assert
+    setTimeout(() => {
+      expect(store.getActions().length).toBe(1);
+      expect(store.getActions()[0]).toEqual({ type: LOOSE_GAME });
+      // We don't care about the dispatch function really, plus it seems it isn't correctly detected.
+      expect(saveHistory.mock.calls[0].slice(1)).toEqual([3, 4]);
+      done();
+    }, 1500);
+    jest.runOnlyPendingTimers();
+  });
+});
+
+describe('The action creator for \'WIN_GAME\' action', () => {
+  it('should store the updated stats to persistent storage', (done) => {
+    // Arrange
+    saveHistory.mockClear();
+    const initialState = { stats: { losses: 3, wins: 4 } };
+    const store = mockStore(initialState);
+
+    // Act
+    store.dispatch(winGame());
+
+    // Assert
+    setTimeout(() => {
+      expect(store.getActions().length).toBe(1);
+      expect(store.getActions()[0]).toEqual({ type: WIN_GAME });
+      // We don't care about the dispatch function really, plus it seems it isn't correctly detected.
+      expect(saveHistory.mock.calls[0].slice(1)).toEqual([3, 4]);
+      done();
+    }, 1500);
+    jest.runOnlyPendingTimers();
   });
 });
