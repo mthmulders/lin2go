@@ -9,6 +9,7 @@ import {
 } from '../actions';
 
 import game from './game';
+import messages from './messages';
 import nav from './nav';
 import stats from './stats';
 
@@ -17,6 +18,7 @@ import stats from './stats';
 
 const reducer = combineReducers({
   game,
+  messages,
   nav,
   stats
 });

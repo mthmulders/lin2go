@@ -2,6 +2,7 @@
 // the fact that these reducers returned undefined during initialization.
 jest.unmock('../game');
 jest.unmock('../index');
+jest.unmock('../messages');
 jest.unmock('../nav');
 jest.unmock('../stats');
 // Unmock Redux so we can use 'combineReducers'.

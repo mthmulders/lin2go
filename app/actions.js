@@ -1,5 +1,6 @@
 export const ADD_LETTER_TO_GUESS = 'ADD_LETTER_TO_GUESS';
 export const CANCEL_GAME = 'CANCEL_GAME';
+export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
 export const EVAL_GAME_END = 'EVAL_GAME_END';
 export const HIDE_STATS = 'HIDE_STATS';
 export const LOOSE_GAME = 'LOOSE_GAME';
@@ -8,6 +9,7 @@ export const RATE_LETTER = 'RATE_LETTER';
 export const RESET_GUESS = 'RESET_GUESS';
 export const RESTORE_STATS = 'RESTORE_STATS';
 export const SHOW_STATS = 'SHOW_STATS';
+export const SHOW_MESSAGE = 'SHOW_MESSAGE';
 export const START_GAME = 'START_GAME';
 export const WIN_GAME = 'WIN_GAME';
 
@@ -26,6 +28,9 @@ export const addLetterToGuess = (letter) => {
 };
 export const cancelGame = () => {
   return { type: CANCEL_GAME };
+};
+export const clearMessage = () => {
+  return { type: CLEAR_MESSAGE };
 };
 export const evalGameEnd = () => {
   return (dispatch, getState) => {
@@ -73,6 +78,9 @@ export const restoreStats = (losses, wins) => {
 };
 export const showStats = () => {
   return { type: SHOW_STATS };
+};
+export const showMessage = (message) => {
+  return { type: SHOW_MESSAGE, message };
 };
 export const startGame = () => {
   return { type: START_GAME };
