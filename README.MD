@@ -1,4 +1,4 @@
-![LIN2GO logo](https://raw.githubusercontent.com/mthmulders/lin2go/master/app/resources/start.png)
+![LIN2GO logo](https://raw.githubusercontent.com/mthmulders/lin2go/master/app/resources/logo.png)
 
 Build status (just the Javascript): [![CircleCI](https://circleci.com/gh/mthmulders/lin2go.svg?style=svg)](https://circleci.com/gh/mthmulders/lin2go)
 
