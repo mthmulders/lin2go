@@ -12,7 +12,6 @@
   ],
   "preset": "jest-react-native",
   "testRegex": ".*Spec\\.js$",
-  "timers": "fake",
   "unmockedModulePathPatterns": [
     "react"
   ]

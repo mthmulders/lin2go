@@ -17,6 +17,8 @@ import {
   WIN_GAME
 } from '../../actions';
 
+jest.useFakeTimers();
+
 describe('The action creator for \'RATE_LETTER\' action', () => {
   it('should dispatch an \'RATE_LETTER\' action with the desired index', (done) => {
     // Arrange
