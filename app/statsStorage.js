@@ -10,8 +10,8 @@ export const loadHistory = async (dispatch) => {
     const values = await AsyncStorage.multiGet([LOSSES, WINS]);
     if (values !== null && values !== undefined) {
       // values = [ ["@Stats:losses",null], ["@Stats:wins",null] ]
-      const losses = values.find(item => item[0] === LOSSES)[1] || 0;
-      const wins = values.find(item => item[0] === WINS)[1] || 0;
+      const losses = parseInt(values.find(item => item[0] === LOSSES)[1]) || 0;
+      const wins = parseInt(values.find(item => item[0] === WINS)[1]) || 0;
       const action = restoreStats(losses, wins);
       dispatch(action);
     }
@@ -24,8 +24,8 @@ export const loadHistory = async (dispatch) => {
 export const saveHistory = async (dispatch, losses, wins) => {
   try {
     const errors = await AsyncStorage.multiSet([
-      [LOSSES, losses],
-      [WINS, wins]
+      [LOSSES, losses.toString()],
+      [WINS, wins.toString()]
     ]);
     if (errors !== null && errors !== undefined) {
       errors.filter(e => !!e).forEach(error => {

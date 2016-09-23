@@ -18,7 +18,7 @@ describe('Statistics storage and retrieval', () => {
     // Arrange
     const dispatch = jest.fn();
     AsyncStorage.multiGet = jest.fn(args => {
-      return Promise.resolve([["@stats:losses",3],["@stats:wins",4]]);
+      return Promise.resolve([['@stats:losses','3'],['@stats:wins','4']]);
     });
     const action = {};
     restoreStats.mockImplementation(() => action)
@@ -86,7 +86,7 @@ describe('Statistics storage and retrieval', () => {
 
     // Assert
     setTimeout(() => {
-      expect(AsyncStorage.multiSet).toBeCalledWith([["@stats:losses",losses],["@stats:wins",wins]]);
+      expect(AsyncStorage.multiSet).toBeCalledWith([["@stats:losses",'3'],["@stats:wins",'4']]);
       expect(showMessage).not.toBeCalled();
       expect(dispatch).not.toBeCalled();
       done();
@@ -108,7 +108,7 @@ describe('Statistics storage and retrieval', () => {
 
     // Assert
     setTimeout(() => {
-      expect(AsyncStorage.multiSet).toBeCalledWith([["@stats:losses",losses],["@stats:wins",wins]]);
+      expect(AsyncStorage.multiSet).toBeCalledWith([["@stats:losses",'3'],["@stats:wins",'4']]);
       expect(showMessage).toBeCalled();
       expect(dispatch).toBeCalled();
       done();
