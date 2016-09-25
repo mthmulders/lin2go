@@ -9,7 +9,6 @@
   "dependencies": {
     "apsl-react-native-button": "^3.0.0",
     "react": "^15.3.1",
-    "react-addons-test-utils": "^15.3.1",
     "react-native": "^0.34.0",
     "react-native-simple-toast": "0.0.3",
     "react-redux": "^4.4.5",
@@ -25,9 +24,9 @@
     "babel-preset-react-native": "^1.9.0",
     "jest-cli": "^15.1.1",
     "jest-react-native": "^15.0.0",
-    "react-addons-test-utils": "15.3.1",
+    "react-addons-test-utils": "15.3.2",
     "react-shallow-testutils": "^2.0.0",
-    "react-test-renderer": "15.3.1",
+    "react-test-renderer": "15.3.2",
     "redux-mock-store": "^1.1.4"
   }
 }
