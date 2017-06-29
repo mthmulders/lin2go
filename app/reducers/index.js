@@ -1,13 +1,5 @@
 import { combineReducers } from 'redux';
 
-import {
-  ADD_LETTER_TO_GUESS,
-  CANCEL_GAME,
-  HIDE_STATS,
-  SHOW_STATS,
-  START_GAME
-} from '../actions';
-
 import game from './game';
 import messages from './messages';
 import nav from './nav';

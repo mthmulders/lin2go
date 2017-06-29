@@ -3,9 +3,11 @@
 // file and reading it from the filesystem with react-native-fs
 // (https://github.com/johanneslumpe/react-native-fs)
 const words = [
-  "appel",
-  "kiwis",
-  "peren"
+  "APPEL",
+  "DRUIF",
+  "KIWIS",
+  "PEREN",
+  "PRUIM"
 ];
 
 export const wordCount = () => {
