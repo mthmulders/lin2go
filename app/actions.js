@@ -19,7 +19,8 @@ export const addLetterToGuess = (letter) => {
   return (dispatch, getState) => {
     dispatch({ type: ADD_LETTER_TO_GUESS, letter: letter });
     const guess = getState().game.guess;
-    if (getState().game.invalidWord) {
+    const game = getState().game;
+    if (game.invalidWord) {
       dispatch(resetGuess());
       dispatch(invalidWord());
     } else if (guess.length === 5) {

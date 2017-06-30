@@ -19,5 +19,5 @@ export const getWord = (idx) => {
 }
 
 export const exists = (word) => {
-  return words.map(w => w.toUpperCase()).indexOf(word) != -1;
+  return words.map(w => w.toUpperCase()).indexOf(word.toUpperCase()) != -1;
 }
