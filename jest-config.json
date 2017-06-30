@@ -1,5 +1,4 @@
 {
-  "automock": true,
   "collectCoverage": true,
   "globals": {
     "__DEV__": true
@@ -10,7 +9,7 @@
   "transformIgnorePatterns": [
     "node_modules/(?!react-native|apsl-react-native-button)"
   ],
-  "preset": "jest-react-native",
+  "preset": "react-native",
   "testRegex": ".*Spec\\.js$",
   "unmockedModulePathPatterns": [
     "react"

@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`The home screen should show menu buttons 1`] = `
 <View>
   <View
@@ -7,12 +9,12 @@ exports[`The home screen should show menu buttons 1`] = `
     accessible={true}
     hitSlop={undefined}
     onLayout={undefined}
-    onResponderGrant={[Function bound touchableHandleResponderGrant]}
-    onResponderMove={[Function bound touchableHandleResponderMove]}
-    onResponderRelease={[Function bound touchableHandleResponderRelease]}
-    onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
-    onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
-    onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "alignItems": "center",
@@ -26,19 +28,21 @@ exports[`The home screen should show menu buttons 1`] = `
         "marginBottom": 10,
         "opacity": 1,
         "paddingLeft": 20,
-        "paddingRight": 20
+        "paddingRight": 20,
       }
     }
-    testID={undefined}>
+    testID={undefined}
+  >
     <Text
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
         Object {
-          "fontSize": 18
+          "fontSize": 18,
         }
-      }>
+      }
+    >
       Start new game
     </Text>
   </View>
@@ -49,12 +53,12 @@ exports[`The home screen should show menu buttons 1`] = `
     accessible={true}
     hitSlop={undefined}
     onLayout={undefined}
-    onResponderGrant={[Function bound touchableHandleResponderGrant]}
-    onResponderMove={[Function bound touchableHandleResponderMove]}
-    onResponderRelease={[Function bound touchableHandleResponderRelease]}
-    onResponderTerminate={[Function bound touchableHandleResponderTerminate]}
-    onResponderTerminationRequest={[Function bound touchableHandleResponderTerminationRequest]}
-    onStartShouldSetResponder={[Function bound touchableHandleStartShouldSetResponder]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "alignItems": "center",
@@ -68,19 +72,21 @@ exports[`The home screen should show menu buttons 1`] = `
         "marginBottom": 10,
         "opacity": 1,
         "paddingLeft": 20,
-        "paddingRight": 20
+        "paddingRight": 20,
       }
     }
-    testID={undefined}>
+    testID={undefined}
+  >
     <Text
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
         Object {
-          "fontSize": 18
+          "fontSize": 18,
         }
-      }>
+      }
+    >
       Statistics
     </Text>
   </View>

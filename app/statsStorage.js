@@ -9,7 +9,7 @@ export const loadHistory = async (dispatch) => {
   try {
     const values = await AsyncStorage.multiGet([LOSSES, WINS]);
     if (values !== null && values !== undefined) {
-      // values = [ ["@Stats:losses",null], ["@Stats:wins",null] ]
+      // values = [ ["@stats:losses",null], ["@stats:wins",null] ]
       const losses = parseInt(values.find(item => item[0] === LOSSES)[1]) || 0;
       const wins = parseInt(values.find(item => item[0] === WINS)[1]) || 0;
       const action = restoreStats(losses, wins);

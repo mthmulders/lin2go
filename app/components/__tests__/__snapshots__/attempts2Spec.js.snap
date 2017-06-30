@@ -1,19 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`The attempts component should give visual feedback on the score of the attempt 1`] = `
 <View
   style={
     Object {
       "alignItems": "center",
-      "justifyContent": "center"
+      "justifyContent": "center",
     }
-  }>
+  }
+>
   <View
     style={
       Object {
         "alignItems": "stretch",
         "flexDirection": "row",
-        "justifyContent": "space-between"
+        "justifyContent": "space-between",
       }
-    }>
+    }
+  >
     <Text
       accessible={true}
       allowFontScaling={true}
@@ -24,9 +28,10 @@ exports[`The attempts component should give visual feedback on the score of the 
           "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 40
+          "width": 40,
         }
-      }>
+      }
+    >
       k
     </Text>
     <Text
@@ -39,9 +44,10 @@ exports[`The attempts component should give visual feedback on the score of the 
           "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 40
+          "width": 40,
         }
-      }>
+      }
+    >
       i
     </Text>
     <Text
@@ -54,9 +60,10 @@ exports[`The attempts component should give visual feedback on the score of the 
           "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 40
+          "width": 40,
         }
-      }>
+      }
+    >
       w
     </Text>
     <Text
@@ -69,9 +76,10 @@ exports[`The attempts component should give visual feedback on the score of the 
           "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 40
+          "width": 40,
         }
-      }>
+      }
+    >
       i
     </Text>
     <Text
@@ -85,9 +93,10 @@ exports[`The attempts component should give visual feedback on the score of the 
           "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 40
+          "width": 40,
         }
-      }>
+      }
+    >
       s
     </Text>
   </View>
@@ -96,9 +105,10 @@ exports[`The attempts component should give visual feedback on the score of the 
       Object {
         "alignItems": "stretch",
         "flexDirection": "row",
-        "justifyContent": "space-between"
+        "justifyContent": "space-between",
       }
-    }>
+    }
+  >
     <Text
       accessible={true}
       allowFontScaling={true}
@@ -111,9 +121,10 @@ exports[`The attempts component should give visual feedback on the score of the 
           "justifyContent": "space-between",
           "overflow": "hidden",
           "textAlign": "center",
-          "width": 40
+          "width": 40,
         }
-      }>
+      }
+    >
       p
     </Text>
     <Text
@@ -128,9 +139,10 @@ exports[`The attempts component should give visual feedback on the score of the 
           "justifyContent": "space-between",
           "overflow": "hidden",
           "textAlign": "center",
-          "width": 40
+          "width": 40,
         }
-      }>
+      }
+    >
       e
     </Text>
     <Text
@@ -143,9 +155,10 @@ exports[`The attempts component should give visual feedback on the score of the 
           "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 40
+          "width": 40,
         }
-      }>
+      }
+    >
       r
     </Text>
     <Text
@@ -159,9 +172,10 @@ exports[`The attempts component should give visual feedback on the score of the 
           "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 40
+          "width": 40,
         }
-      }>
+      }
+    >
       e
     </Text>
     <Text
@@ -174,9 +188,10 @@ exports[`The attempts component should give visual feedback on the score of the 
           "height": 40,
           "justifyContent": "space-between",
           "textAlign": "center",
-          "width": 40
+          "width": 40,
         }
-      }>
+      }
+    >
       n
     </Text>
   </View>
