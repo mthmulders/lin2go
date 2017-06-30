@@ -7,7 +7,7 @@
     "test": "jest --config=jest-config.json --no-cache"
   },
   "dependencies": {
-    "apsl-react-native-button": "3.0.0",
+    "apsl-react-native-button": "3.0.2",
     "react": "15.3.1",
     "react-native": "0.34.0",
     "react-native-simple-toast": "0.0.3",
