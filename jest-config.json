@@ -7,7 +7,7 @@
   "moduleFileExtensions": [
     "js"
   ],
-  "preprocessorIgnorePatterns": [
+  "transformIgnorePatterns": [
     "node_modules/(?!react-native|apsl-react-native-button)"
   ],
   "preset": "jest-react-native",
