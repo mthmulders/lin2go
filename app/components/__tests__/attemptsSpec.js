@@ -2,14 +2,14 @@ jest.unmock('../attempts');
 
 import React from 'react';
 import { Text } from 'react-native';
-import ReactTestUtils from 'react-addons-test-utils';
+import { createRenderer } from 'react-test-renderer/shallow';
 
 import { findAllWithType } from 'react-shallow-testutils';
 
 import { Attempts } from '../attempts';
 
 describe('The attempts component', () => {
-  const renderer = ReactTestUtils.createRenderer();
+  const renderer = createRenderer();
 
   it('should show previous attempts to guess the word', () => {
     // Arrange

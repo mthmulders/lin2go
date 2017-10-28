@@ -19,12 +19,13 @@ const Stats = (props) => {
   );
 };
 
-Stats.propTypes = {
-  stats: React.PropTypes.shape({
-    losses: React.PropTypes.number.isRequired,
-    wins: React.PropTypes.number.isRequired
-  }).isRequired
-};
+/**
+ * Props:
+ *  stats: {
+ *    losses: number,
+ *    wins: number
+ *  }
+ */
 
 const mapStateToProps = (state) => {
   return {

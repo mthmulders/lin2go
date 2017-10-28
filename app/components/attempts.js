@@ -49,10 +49,11 @@ const mapDispatchToProps = (dispatch) => {
   return { };
 };
 
-Attempts.propTypes = {
-  attempts: React.PropTypes.arrayOf(React.PropTypes.shape({
-    word: React.PropTypes.string.isRequired
-  })).isRequired
-};
+/**
+ * Props:
+ *  attempts: [{
+ *    word: string
+ *  }]
+ */
 
 export default connect(mapStateToProps, mapDispatchToProps)(Attempts);

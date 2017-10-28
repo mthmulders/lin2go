@@ -29,9 +29,10 @@ export const App = (props) => {
   );
 };
 
-App.propTypes = {
-  message: React.PropTypes.string
-};
+/**
+ * Props:
+ *  message: string
+ */
 
 const mapStateToProps = (state) => {
   return {

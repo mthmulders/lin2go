@@ -49,9 +49,10 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-EndGame.propTypes = {
-  lost: React.PropTypes.bool,
-  won: React.PropTypes.bool
-};
+/**
+ * Props:
+ *  lost: bool
+ *  won: bool
+ */
 
 export default connect(mapStateToProps, mapDispatchToProps)(EndGame);

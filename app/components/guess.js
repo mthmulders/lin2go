@@ -60,9 +60,10 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-Guess.propTypes = {
-  guess: React.PropTypes.string.isRequired,
-  prefill: React.PropTypes.arrayOf(React.PropTypes.string)
-};
+/**
+ * Props:
+ *  guess: string
+ *  prefill: string[]
+ */
 
 export default connect(mapStateToProps, mapDispatchToProps)(Guess);

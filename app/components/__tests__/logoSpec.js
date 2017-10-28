@@ -3,7 +3,7 @@ jest.mock('../../resources/logo.png');
 
 import React from 'react';
 import { Image } from 'react-native';
-import ReactTestUtils from 'react-addons-test-utils';
+import { createRenderer } from 'react-test-renderer/shallow';
 
 import { findWithType } from 'react-shallow-testutils';
 
@@ -11,7 +11,7 @@ import Logo from '../logo';
 import expectedImage from '../../resources/logo.png';
 
 describe('The logo component', () => {
-  const renderer = ReactTestUtils.createRenderer();
+  const renderer = createRenderer();
 
   it('should show the game logo', () => {
     // Arrange

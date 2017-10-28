@@ -2,14 +2,14 @@ jest.unmock('../endGame');
 
 import React from 'react';
 import { Text } from 'react-native';
-import ReactTestUtils from 'react-addons-test-utils';
+import { createRenderer } from 'react-test-renderer/shallow';
 
 import { findAllWithType } from 'react-shallow-testutils';
 
 import { EndGame } from '../endGame';
 
 describe('The end-of-game component', () => {
-  const renderer = ReactTestUtils.createRenderer();
+  const renderer = createRenderer();
 
   it('should show a message when the game is lost', () => {
     // Arrange

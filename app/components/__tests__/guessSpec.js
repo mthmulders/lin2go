@@ -2,14 +2,14 @@ jest.unmock('../guess');
 
 import React from 'react';
 import { TextInput } from 'react-native';
-import ReactTestUtils from 'react-addons-test-utils';
+import { createRenderer } from 'react-test-renderer/shallow';
 
 import { findAllWithType } from 'react-shallow-testutils';
 
 import { Guess } from '../guess';
 
 describe('The guess component', () => {
-  const renderer = ReactTestUtils.createRenderer();
+  const renderer = createRenderer();
 
   it('should only allow to edit the next letter in the current guess', () => {
     // Arrange

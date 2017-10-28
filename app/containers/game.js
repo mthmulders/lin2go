@@ -17,8 +17,9 @@ export const Game = (props) => {
   );
 };
 
-Game.propTypes = {
-};
+/**
+ * Props: (none)
+ */
 
 const mapStateToProps = (state) => {
   return {};

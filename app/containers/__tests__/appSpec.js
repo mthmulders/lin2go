@@ -4,13 +4,13 @@ jest.mock('react-native-simple-toast', () => {
 
 import React from 'react';
 import Toast from 'react-native-simple-toast';
-import ReactTestUtils from 'react-addons-test-utils';
+import { createRenderer } from 'react-test-renderer/shallow';
 
 jest.unmock('../app');
 import { App } from '../app';
 
 jest.useFakeTimers();
-const renderer = ReactTestUtils.createRenderer();
+const renderer = createRenderer();
 
 describe('The application', () => {
 
