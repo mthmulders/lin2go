@@ -8,6 +8,7 @@ exports[`The home screen should show menu buttons 1`] = `
     accessibilityTraits={undefined}
     accessible={true}
     hitSlop={undefined}
+    isTVSelectable={true}
     onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -32,6 +33,7 @@ exports[`The home screen should show menu buttons 1`] = `
       }
     }
     testID={undefined}
+    tvParallaxProperties={undefined}
   >
     <Text
       accessible={true}
@@ -52,6 +54,7 @@ exports[`The home screen should show menu buttons 1`] = `
     accessibilityTraits={undefined}
     accessible={true}
     hitSlop={undefined}
+    isTVSelectable={true}
     onLayout={undefined}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -76,6 +79,7 @@ exports[`The home screen should show menu buttons 1`] = `
       }
     }
     testID={undefined}
+    tvParallaxProperties={undefined}
   >
     <Text
       accessible={true}
