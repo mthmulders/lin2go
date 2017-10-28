@@ -9,7 +9,7 @@
   "dependencies": {
     "apsl-react-native-button": "3.0.2",
     "react": "16.0.0-alpha.12",
-    "react-native": "0.45.1",
+    "react-native": "0.46.4",
     "react-native-simple-toast": "0.0.6",
     "react-redux": "5.0.5",
     "redux": "3.7.1",
