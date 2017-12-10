@@ -25,7 +25,7 @@
     "jest-react-native": "18.0.0",
     "mock-async-storage": "^1.0.3",
     "react-dom": "16.0.0",
-    "react-shallow-testutils": "3.0.0",
+    "react-shallow-testutils": "3.0.1",
     "react-test-renderer": "16.0.0",
     "redux-mock-store": "1.2.3"
   }
