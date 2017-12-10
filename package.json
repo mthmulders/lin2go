@@ -11,7 +11,7 @@
     "react": "16.0.0",
     "react-native": "0.50.4",
     "react-native-simple-toast": "0.0.7",
-    "react-redux": "5.0.5",
+    "react-redux": "5.0.6",
     "redux": "3.7.1",
     "redux-thunk": "2.2.0"
   },
