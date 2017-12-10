@@ -40,7 +40,6 @@ exports[`The home screen should show menu buttons 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Object {
@@ -89,7 +88,6 @@ exports[`The home screen should show menu buttons 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
-      disabled={false}
       ellipsizeMode="tail"
       style={
         Object {
